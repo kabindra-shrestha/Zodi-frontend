@@ -1,8 +1,0 @@
-{
-  "name": "zodi-frontend",
-  "buildpacks": [
-    {
-      "url": "mars/create-react-app"
-    }
-  ]
-}

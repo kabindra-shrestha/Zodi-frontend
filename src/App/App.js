@@ -102,7 +102,7 @@ class App extends Component {
     render() {
         const {classes} = this.props;
 
-        const {alert, user} = this.props;
+        const {alert, loggedIn} = this.props;
         const heading = "Welcome To Zodi";
         const quote = "This project includes simple spring boot application with spring security and react js as frontend for authentication with JWT.";
         const footer = "Kabindra Shrestha";
@@ -116,7 +116,7 @@ class App extends Component {
                     <div className={classes.root}>
                         <CssBaseline/>
                         {TITLE !== routeConstants.SITE && <div>
-                            {user &&
+                            {loggedIn &&
                             <AppBar position="fixed" className={classes.appBar}>
                                 <Toolbar>
                                     <IconButton edge="start" className={classes.menuButton} color="inherit"
@@ -129,7 +129,7 @@ class App extends Component {
                                     <Button color="inherit" href={routeConstants.LOGIN_URL}>Logout</Button>
                                 </Toolbar>
                             </AppBar>}
-                            {user &&
+                            {loggedIn &&
                             <Drawer
                                 className={classes.drawer}
                                 variant="permanent"
@@ -168,7 +168,7 @@ class App extends Component {
                             </Drawer>}
                         </div>}
                         <main className={classes.content}>
-                            {TITLE !== routeConstants.SITE && <div>{user && <Toolbar/>}</div>}
+                            {TITLE !== routeConstants.SITE && <div>{loggedIn && <Toolbar/>}</div>}
                             <Switch className="padding-left">
                                 <Route path={routeConstants.SITE_URL} exact
                                        component={() => <Welcome heading={heading} quote={quote} footer={footer}/>}/>
@@ -187,10 +187,10 @@ class App extends Component {
 
 function mapStateToProps(state) {
     const {alert, authentication} = state;
-    const {user} = authentication;
+    const {loggedIn} = authentication;
     return {
         alert,
-        user
+        loggedIn
     };
 }
 

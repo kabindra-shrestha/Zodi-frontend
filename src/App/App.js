@@ -61,38 +61,31 @@ const useStyles = theme => ({
 
 let TITLE;
 
+function setTitle(history) {
+    if (history.location.pathname === routeConstants.SITE_URL) {
+        TITLE = routeConstants.SITE;
+    }
+    if (history.location.pathname === routeConstants.LOGIN_URL) {
+        TITLE = routeConstants.LOGIN;
+    }
+    if (history.location.pathname === routeConstants.HOME_URL) {
+        TITLE = routeConstants.HOME;
+    }
+    if (history.location.pathname === routeConstants.DASHBOARD_URL) {
+        TITLE = routeConstants.DASHBOARD;
+    }
+}
+
 class App extends Component {
     constructor(props) {
         super(props);
 
         const {dispatch} = this.props;
 
-        if (history.location.pathname === routeConstants.SITE_URL) {
-            TITLE = routeConstants.SITE;
-        }
-        if (history.location.pathname === routeConstants.LOGIN_URL) {
-            TITLE = routeConstants.LOGIN;
-        }
-        if (history.location.pathname === routeConstants.HOME_URL) {
-            TITLE = routeConstants.HOME;
-        }
-        if (history.location.pathname === routeConstants.DASHBOARD_URL) {
-            TITLE = routeConstants.DASHBOARD;
-        }
+        setTitle(history);
 
         history.listen((location, action) => {
-            if (history.location.pathname === routeConstants.SITE_URL) {
-                TITLE = routeConstants.SITE;
-            }
-            if (history.location.pathname === routeConstants.LOGIN_URL) {
-                TITLE = routeConstants.LOGIN;
-            }
-            if (history.location.pathname === routeConstants.HOME_URL) {
-                TITLE = routeConstants.HOME;
-            }
-            if (history.location.pathname === routeConstants.DASHBOARD_URL) {
-                TITLE = routeConstants.DASHBOARD;
-            }
+            setTitle(history);
 
             // clear alert on location change
             dispatch(alertActions.clear());

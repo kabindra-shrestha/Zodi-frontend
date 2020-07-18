@@ -73,34 +73,33 @@ class Profile extends Component {
 
     render() {
         const {classes} = this.props;
-        const {user, users, usersData} = this.props;
+        const {user} = this.props;
 
         return (<div>
                 <div>
                     <Card className={classes.root}>
+                        {user &&
                         <CardContent className={classes.content}>
                             <Typography className={classes.title} gutterBottom>
-                                <p>Hi {user.firstname + " " + user.lastname}! From Authentication Redux</p>
-                            </Typography>
-                            <Typography className={classes.title} gutterBottom>
-                                {usersData &&
-                                <p>Hi {usersData.firstname + " " + usersData.lastname}! From Users Redux</p>}
+                                <p>{user.firstname + " " + user.lastname}</p>
                             </Typography>
                             <Typography className={classes.quote}>
-                                <p>You're logged in with React & JWT!!</p>
+                                <p>Email:       {user.email}</p>
+                                <p>Address:     {user.address}</p>
+                                <p>Phone No.:   {user.phone}</p>
+                                <p>Mobile No.:  {user.mobile}</p>
+                                <p>Image:       {user.image}</p>
+                                <p>Expiry Date: {user.expiryDate}</p>
+                                <p>Created At:  {user.createdat}</p>
+                                <p>Modified At: {user.modifiedat}</p>
                             </Typography>
                             <hr className={classes.space}/>
                             <Typography className={classes.footer}>
-                                {users.loading && <em>Loading users...</em>}
-                                {users.error && <p className="text-danger">ERROR: {users.error}</p>}
-                            </Typography>
-                            <Typography className={classes.footer}>
-                                {users.usersStatus &&
-                                <p className="text-danger">STATUS: {users.usersStatus ? "True" : "False"}</p>}
-                                {users.usersMessage &&
-                                <p className="text-danger">MESSAGE: {users.usersMessage}</p>}
+                                {user.enabled &&
+                                <p className="text-danger">STATUS: {user.enabled ? "Active" : "Inactive"}</p>}
                             </Typography>
                         </CardContent>
+                        }
                     </Card>
                 </div>
             </div>
@@ -109,13 +108,10 @@ class Profile extends Component {
 }
 
 function mapStateToProps(state) {
-    const {users, authentication} = state;
+    const {authentication} = state;
     const {user} = authentication;
-    const {usersData} = users;
     return {
         user,
-        users,
-        usersData
     };
 }
 

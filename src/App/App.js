@@ -5,6 +5,7 @@ import {history} from '../_helpers';
 import {alertActions} from '../_actions';
 import {Login} from "../login/Login";
 import {Dashboard} from "../dashboard/Dashboard";
+import {Profile} from "../profile/Profile";
 import {PrivateRoute} from "../_components";
 import Welcome from "../main/Welcome";
 import './App.css';
@@ -19,7 +20,6 @@ import InputBase from '@material-ui/core/InputBase';
 import Badge from '@material-ui/core/Badge';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
-import MenuIcon from '@material-ui/icons/Menu';
 import SearchIcon from '@material-ui/icons/Search';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import MailIcon from '@material-ui/icons/Mail';
@@ -136,10 +136,14 @@ function setTitle(history) {
     if (history.location.pathname === routeConstants.DASHBOARD_URL) {
         TITLE = routeConstants.DASHBOARD;
     }
+    if (history.location.pathname === routeConstants.PROFILE_URL) {
+        TITLE = routeConstants.PROFILE;
+    }
 }
 
 class App extends Component {
-    anchorEl;
+
+    profileMoreAnchorEl;
     mobileMoreAnchorEl;
 
     constructor(props) {
@@ -157,15 +161,18 @@ class App extends Component {
         });
 
         this.state = {
-            anchorEl: null,
+            profileMoreAnchorEl: null,
             mobileMoreAnchorEl: null,
         };
 
         this.handleProfileMenuOpen = this.handleProfileMenuOpen.bind(this);
+        this.handleMobileMenuOpen = this.handleMobileMenuOpen.bind(this);
+        this.handleMobileMenuClose = this.handleMobileMenuClose.bind(this);
+        this.handleProfileMenuClose = this.handleProfileMenuClose.bind(this);
     }
 
-    setAnchorEl(currentTarget) {
-        this.setState({anchorEl: currentTarget});
+    setProfileMoreAnchorEl(currentTarget) {
+        this.setState({profileMoreAnchorEl: currentTarget});
     }
 
     setMobileMoreAnchorEl(currentTarget) {
@@ -173,8 +180,24 @@ class App extends Component {
     }
 
     handleProfileMenuOpen = (event) => {
-        console.error("handleProfileMenuOpen " + event.currentTarget);
-        this.setAnchorEl(event.currentTarget);
+        event.preventDefault();
+
+        this.setProfileMoreAnchorEl(event.currentTarget);
+    };
+
+    handleMobileMenuOpen = (event) => {
+        event.preventDefault();
+
+        this.setMobileMoreAnchorEl(event.currentTarget);
+    };
+
+    handleMobileMenuClose = () => {
+        this.setMobileMoreAnchorEl(null);
+    };
+
+    handleProfileMenuClose = () => {
+        this.setProfileMoreAnchorEl(null);
+        this.handleMobileMenuClose();
     };
 
     render() {
@@ -185,54 +208,37 @@ class App extends Component {
         const quote = "This project includes simple spring boot application with spring security and react js as frontend for authentication with JWT.";
         const footer = "Kabindra Shrestha";
 
-        // const [anchorEl, setAnchorEl] = React.useState(null);
-        // const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
-
-        const isMenuOpen = Boolean(this.anchorEl);
-        const isMobileMenuOpen = Boolean(this.mobileMoreAnchorEl);
-
-        const handleMobileMenuClose = () => {
-            console.error("handleMobileMenuClose null");
-            this.setMobileMoreAnchorEl(null);
-        };
-
-        const handleMenuClose = () => {
-            console.error("handleMenuClose null");
-            this.setAnchorEl(null);
-            handleMobileMenuClose();
-        };
-
-        const handleMobileMenuOpen = (event) => {
-            console.error("handleMobileMenuOpen " + event.currentTarget);
-            this.setMobileMoreAnchorEl(event.currentTarget);
-        };
+        const isMenuOpen = Boolean(this.state.profileMoreAnchorEl);
+        const isMobileMenuOpen = Boolean(this.state.mobileMoreAnchorEl);
 
         const menuId = 'primary-search-account-menu';
         const renderMenu = (
             <Menu
-                anchorEl={this.anchorEl}
+                anchorEl={this.state.profileMoreAnchorEl}
                 anchorOrigin={{vertical: 'top', horizontal: 'right'}}
                 id={menuId}
                 keepMounted
                 transformOrigin={{vertical: 'top', horizontal: 'right'}}
                 open={isMenuOpen}
-                onClose={handleMenuClose}
+                onClose={this.handleProfileMenuClose}
             >
-                <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
-                <MenuItem onClick={handleMenuClose}>My account</MenuItem>
+                <MenuItem onClick={this.handleProfileMenuClose} component={Link}
+                          to={routeConstants.PROFILE_URL}>Profile</MenuItem>
+                <MenuItem onClick={this.handleProfileMenuClose} component={Link}
+                          to={routeConstants.LOGIN_URL}>Logout</MenuItem>
             </Menu>
         );
 
         const mobileMenuId = 'primary-search-account-menu-mobile';
         const renderMobileMenu = (
             <Menu
-                anchorEl={this.mobileMoreAnchorEl}
+                anchorEl={this.state.mobileMoreAnchorEl}
                 anchorOrigin={{vertical: 'top', horizontal: 'right'}}
                 id={mobileMenuId}
                 keepMounted
                 transformOrigin={{vertical: 'top', horizontal: 'right'}}
                 open={isMobileMenuOpen}
-                onClose={handleMobileMenuClose}
+                onClose={this.handleMobileMenuClose}
             >
                 <MenuItem>
                     <IconButton aria-label="show 4 new mails" color="inherit">
@@ -289,13 +295,9 @@ class App extends Component {
                             {loggedIn &&
                             <AppBar position="fixed" className={classes.appBar}>
                                 <Toolbar>
-                                    <IconButton
-                                        edge="start"
-                                        className={classes.menuButton}
-                                        color="inherit"
-                                        aria-label="open drawer"
-                                    >
-                                        <MenuIcon/>
+                                    <IconButton edge="start" className={classes.menuButton} color="inherit"
+                                                aria-label="menu">
+                                        <img src="/favicon.ico" width="25" height="25" alt="brand"/>
                                     </IconButton>
                                     <Typography className={classes.title} variant="h6" noWrap>
                                         {TITLE}
@@ -341,7 +343,7 @@ class App extends Component {
                                             aria-label="show more"
                                             aria-controls={mobileMenuId}
                                             aria-haspopup="true"
-                                            onClick={handleMobileMenuOpen}
+                                            onClick={this.handleMobileMenuOpen}
                                             color="inherit"
                                         >
                                             <MoreIcon/>
@@ -397,6 +399,7 @@ class App extends Component {
                                 <Route path={routeConstants.LOGIN_URL} exact component={Login}/>
                                 <PrivateRoute path={routeConstants.HOME_URL} exact component={() => <Dashboard/>}/>
                                 <PrivateRoute path={routeConstants.DASHBOARD_URL} exact component={() => <Dashboard/>}/>
+                                <PrivateRoute path={routeConstants.PROFILE_URL} exact component={() => <Profile/>}/>
                                 <Route component={() => <ErrorPageNotFound/>}/>
                             </Switch>
                         </main>

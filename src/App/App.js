@@ -203,7 +203,7 @@ class App extends Component {
     render() {
         const {classes} = this.props;
 
-        const {alert, loggedIn} = this.props;
+        const {alert, loggedIn, user} = this.props;
         const heading = "Welcome To Zodi";
         const quote = "This project includes simple spring boot application with spring security and react js as frontend for authentication with JWT.";
         const footer = "Kabindra Shrestha";
@@ -263,7 +263,9 @@ class App extends Component {
                         aria-haspopup="true"
                         color="inherit"
                     >
-                        <AccountCircle/>
+                        <Badge color={user.enabled ? "secondary" : "error"} variant="dot">
+                            <AccountCircle/>
+                        </Badge>
                     </IconButton>
                     <p>Profile</p>
                 </MenuItem>
@@ -279,19 +281,6 @@ class App extends Component {
                     <div className={classes.root}>
                         <CssBaseline/>
                         {TITLE !== routeConstants.SITE && <div>
-                            {/*{loggedIn &&
-                            <AppBar position="fixed" className={classes.appBar}>
-                                <Toolbar>
-                                    <IconButton edge="start" className={classes.menuButton} color="inherit"
-                                                aria-label="menu">
-                                        <img src="/favicon.ico" width="25" height="25" alt="brand"/>
-                                    </IconButton>
-                                    <Typography variant="h6" className={classes.title} noWrap>
-                                        {TITLE}
-                                    </Typography>
-                                    <Button color="inherit" href={routeConstants.LOGIN_URL}>Logout</Button>
-                                </Toolbar>
-                            </AppBar>}*/}
                             {loggedIn &&
                             <AppBar position="fixed" className={classes.appBar}>
                                 <Toolbar>
@@ -335,7 +324,9 @@ class App extends Component {
                                             onClick={this.handleProfileMenuOpen}
                                             color="inherit"
                                         >
-                                            <AccountCircle/>
+                                            <Badge color={user.enabled ? "secondary" : "error"} variant="dot">
+                                                <AccountCircle/>
+                                            </Badge>
                                         </IconButton>
                                     </div>
                                     <div className={classes.sectionMobile}>
@@ -412,10 +403,11 @@ class App extends Component {
 
 function mapStateToProps(state) {
     const {alert, authentication} = state;
-    const {loggedIn} = authentication;
+    const {loggedIn, user} = authentication;
     return {
         alert,
-        loggedIn
+        loggedIn,
+        user
     };
 }
 

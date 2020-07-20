@@ -35,6 +35,7 @@ import ListItemText from "@material-ui/core/ListItemText/ListItemText";
 import Divider from "@material-ui/core/Divider";
 import {fade, withStyles} from "@material-ui/core";
 import {routeConstants} from "../_constants";
+import {green, red} from "@material-ui/core/colors";
 
 const drawerWidth = 240;
 
@@ -118,6 +119,12 @@ const useStyles = theme => ({
     content: {
         flexGrow: 1,
         padding: theme.spacing(3),
+    }, customBadgeSuccess: {
+        backgroundColor: green.A400,
+        color: "white"
+    }, customBadgeError: {
+        backgroundColor: red.A400,
+        color: "white"
     },
 });
 
@@ -263,7 +270,9 @@ class App extends Component {
                         aria-haspopup="true"
                         color="inherit"
                     >
-                        <Badge color={user.enabled ? "secondary" : "error"} variant="dot">
+                        <Badge
+                            classes={{badge: user.enabled ? classes.customBadgeSuccess : classes.customBadgeError}}
+                            variant="dot">
                             <AccountCircle/>
                         </Badge>
                     </IconButton>
@@ -324,7 +333,9 @@ class App extends Component {
                                             onClick={this.handleProfileMenuOpen}
                                             color="inherit"
                                         >
-                                            <Badge color={user.enabled ? "secondary" : "error"} variant="dot">
+                                            <Badge
+                                                classes={{badge: user.enabled ? classes.customBadgeSuccess : classes.customBadgeError}}
+                                                variant="dot">
                                                 <AccountCircle/>
                                             </Badge>
                                         </IconButton>

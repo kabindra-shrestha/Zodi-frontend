@@ -14,7 +14,7 @@ function login(username, password) {
     const requestOptions = {
         method: 'POST',
         headers: {
-            'Authorization': 'Basic ' + Buffer.from("zodi-client:zodi-client-oho").toString('base64')
+            'Authorization': 'Basic ' + Buffer.from(process.env.REACT_APP_BASIC_AUTH_USERNAME + ":" + process.env.REACT_APP_BASIC_AUTH_PASSWORD).toString('base64')
         },
         body: form
     };

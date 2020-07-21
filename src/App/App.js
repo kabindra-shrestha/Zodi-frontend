@@ -169,6 +169,8 @@ class App extends Component {
     };
 
     render() {
+        const userData = JSON.parse(localStorage.getItem('user'));
+
         const {classes} = this.props;
 
         const {alert, loggedIn, user} = this.props;
@@ -231,11 +233,15 @@ class App extends Component {
                         aria-haspopup="true"
                         color="inherit"
                     >
-                        <Badge
-                            classes={{badge: user.enabled ? classes.customBadgeSuccess : classes.customBadgeError}}
-                            variant="dot">
+                        {userData ?
+                            <Badge
+                                classes={{badge: user.enabled ? classes.customBadgeSuccess : classes.customBadgeError}}
+                                variant="dot">
+                                <AccountCircle/>
+                            </Badge>
+                            :
                             <AccountCircle/>
-                        </Badge>
+                        }
                     </IconButton>
                     <p>Profile</p>
                 </MenuItem>
@@ -281,11 +287,15 @@ class App extends Component {
                                             onClick={this.handleProfileMenuOpen}
                                             color="inherit"
                                         >
-                                            <Badge
-                                                classes={{badge: user.enabled ? classes.customBadgeSuccess : classes.customBadgeError}}
-                                                variant="dot">
+                                            {userData ?
+                                                <Badge
+                                                    classes={{badge: user.enabled ? classes.customBadgeSuccess : classes.customBadgeError}}
+                                                    variant="dot">
+                                                    <AccountCircle/>
+                                                </Badge>
+                                                :
                                                 <AccountCircle/>
-                                            </Badge>
+                                            }
                                         </IconButton>
                                     </div>
                                     <div className={classes.sectionMobile}>

@@ -235,7 +235,7 @@ class App extends Component {
                     >
                         {userData ?
                             <Badge
-                                classes={{badge: user.enabled ? classes.customBadgeSuccess : classes.customBadgeError}}
+                                classes={{badge: user.access_token ? classes.customBadgeSuccess : classes.customBadgeError}}
                                 variant="dot">
                                 <AccountCircle/>
                             </Badge>
@@ -289,7 +289,7 @@ class App extends Component {
                                         >
                                             {userData ?
                                                 <Badge
-                                                    classes={{badge: user.enabled ? classes.customBadgeSuccess : classes.customBadgeError}}
+                                                    classes={{badge: user.access_token ? classes.customBadgeSuccess : classes.customBadgeError}}
                                                     variant="dot">
                                                     <AccountCircle/>
                                                 </Badge>

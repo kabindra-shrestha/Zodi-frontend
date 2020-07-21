@@ -30,6 +30,7 @@ function login(username, password) {
     }
 
     function success(user) {
+        console.error("Login Successful !!!!! "+user.access_token);
         return {type: loginConstants.LOGIN_SUCCESS, user}
     }
 

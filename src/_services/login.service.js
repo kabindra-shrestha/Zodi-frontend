@@ -6,26 +6,26 @@ export const loginService = {
 };
 
 function login(username, password) {
+    const form = new FormData();
+    form.append("username", username);
+    form.append("password", password);
+    form.append("grant_type", "password");
+
     const requestOptions = {
         method: 'POST',
         headers: {
-            'Content-Type': 'application/json',
             'Authorization': 'Basic ' + Buffer.from("zodi-client:zodi-client-oho").toString('base64')
         },
-        body: JSON.stringify({
-            "username": username,
-            "password": password,
-            "grant_type": "password"
-        })
+        body: form
     };
 
     return fetch(process.env.REACT_APP_API_ENDPOINT + process.env.REACT_APP_API_VERSION_V1 + `/oauth/token`, requestOptions)
         .then(handleResponse)
         .then(user => {
             // login successful if there's a jwt token in the response
-            if (user.users.token) {
+            if (user.access_token) {
                 // store user details and jwt token in local storage to keep user logged in between page refreshes
-                localStorage.setItem('user', JSON.stringify(user.users));
+                localStorage.setItem('user', JSON.stringify(user));
             }
 
             return user;

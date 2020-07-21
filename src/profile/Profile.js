@@ -84,13 +84,13 @@ class Profile extends Component {
                                 <p>{user.firstname + " " + user.lastname}</p>
                             </Typography>
                             <Typography className={classes.quote}>
-                                <p>Email:       {user.email}</p>
-                                <p>Address:     {user.address}</p>
-                                <p>Phone No.:   {user.phone}</p>
-                                <p>Mobile No.:  {user.mobile}</p>
-                                <p>Image:       {user.image}</p>
+                                <p>Email: {user.email}</p>
+                                <p>Address: {user.address}</p>
+                                <p>Phone No.: {user.phone}</p>
+                                <p>Mobile No.: {user.mobile}</p>
+                                <p>Image: {user.image}</p>
                                 <p>Expiry Date: {user.expiryDate}</p>
-                                <p>Created At:  {user.createdat}</p>
+                                <p>Created At: {user.createdat}</p>
                                 <p>Modified At: {user.modifiedat}</p>
                             </Typography>
                             <hr className={classes.space}/>

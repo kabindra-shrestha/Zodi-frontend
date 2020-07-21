@@ -15,7 +15,7 @@ function getAll() {
         headers: authHeader()
     };
 
-    return fetch(process.env.REACT_APP_API_ENDPOINT + `/api/user/info`, requestOptions).then(handleResponse);
+    return fetch(process.env.REACT_APP_API_ENDPOINT + process.env.REACT_APP_API_VERSION_V1 + `/user/info`, requestOptions).then(handleResponse);
 }
 
 function handleResponse(response) {

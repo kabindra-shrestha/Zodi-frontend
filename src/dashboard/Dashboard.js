@@ -78,18 +78,15 @@ class Dashboard extends Component {
 
     render() {
         const {classes} = this.props;
-        const {user, users, usersData} = this.props;
+        const {users, usersData} = this.props;
 
         return (<div>
                 <div>
                     <Card className={classes.root}>
                         <CardContent className={classes.content}>
                             <Typography className={classes.title} gutterBottom>
-                                <p>Hi {user.firstname + " " + user.lastname}! From Authentication Redux</p>
-                            </Typography>
-                            <Typography className={classes.title} gutterBottom>
                                 {usersData &&
-                                <p>Hi {usersData.firstname + " " + usersData.lastname}! From Users Redux</p>}
+                                <p>Hi {usersData.firstName + " " + usersData.lastName}! From Users Redux</p>}
                             </Typography>
                             <Typography className={classes.quote}>
                                 <p>You're logged in with React & JWT!!</p>
@@ -114,11 +111,9 @@ class Dashboard extends Component {
 }
 
 function mapStateToProps(state) {
-    const {users, authentication} = state;
-    const {user} = authentication;
+    const {users} = state;
     const {usersData} = users;
     return {
-        user,
         users,
         usersData
     };

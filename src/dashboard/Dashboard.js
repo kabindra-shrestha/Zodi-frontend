@@ -86,7 +86,7 @@ class Dashboard extends Component {
                         <CardContent className={classes.content}>
                             <Typography className={classes.title} gutterBottom>
                                 {usersData &&
-                                <p>Hi {usersData.firstName + " " + usersData.lastName}! From Users Redux</p>}
+                                <p>Hi {usersData.firstName + " " + usersData.lastName}!</p>}
                             </Typography>
                             <Typography className={classes.quote}>
                                 <p>You're logged in with React & JWT!!</p>

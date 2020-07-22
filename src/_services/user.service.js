@@ -15,7 +15,15 @@ function getAll() {
         headers: authHeader()
     };
 
-    return fetch(process.env.REACT_APP_API_ENDPOINT + process.env.REACT_APP_API_VERSION_V1 + `/user/info`, requestOptions).then(handleResponse);
+    return fetch(process.env.REACT_APP_API_ENDPOINT + process.env.REACT_APP_API_VERSION_V1 + `/users/get`, requestOptions)
+        .then(handleResponse)
+        .then(users => {
+            if (users) {
+                localStorage.setItem('userData', JSON.stringify(users));
+            }
+
+            return users;
+        });
 }
 
 function handleResponse(response) {

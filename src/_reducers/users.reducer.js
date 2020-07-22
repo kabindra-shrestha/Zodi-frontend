@@ -16,9 +16,9 @@ export function users(state = initialState, action) {
             };
         case userConstants.GETALL_SUCCESS:
             return {
-                usersStatus: action.users.status,
-                usersMessage: action.users.message,
-                usersData: action.users.users
+                usersStatus: true,
+                usersMessage: "User Fetched Successfully.",
+                usersData: action.users
             };
         case userConstants.GETALL_FAILURE:
             return {

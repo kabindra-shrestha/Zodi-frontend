@@ -20,8 +20,6 @@ import Badge from '@material-ui/core/Badge';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
 import AccountCircle from '@material-ui/icons/AccountCircle';
-import MailIcon from '@material-ui/icons/Mail';
-import NotificationsIcon from '@material-ui/icons/Notifications';
 import MoreIcon from '@material-ui/icons/MoreVert';
 import Drawer from "@material-ui/core/Drawer/Drawer";
 import List from "@material-ui/core/List";
@@ -34,6 +32,8 @@ import Divider from "@material-ui/core/Divider";
 import {withStyles} from "@material-ui/core";
 import {routeConstants} from "../_constants";
 import {green, red} from "@material-ui/core/colors";
+import {AddCircleOutline, ExpandLess, ExpandMore, HelpOutline} from "@material-ui/icons";
+import Collapse from "@material-ui/core/Collapse";
 
 const drawerWidth = 240;
 
@@ -87,6 +87,9 @@ const useStyles = theme => ({
         backgroundColor: red.A400,
         color: "white"
     },
+    nested: {
+        paddingLeft: theme.spacing(4),
+    },
 });
 
 let TITLE;
@@ -113,6 +116,7 @@ class App extends Component {
 
     profileMoreAnchorEl;
     mobileMoreAnchorEl;
+    open;
 
     constructor(props) {
         super(props);
@@ -131,6 +135,7 @@ class App extends Component {
         this.state = {
             profileMoreAnchorEl: null,
             mobileMoreAnchorEl: null,
+            open: false,
         };
 
         this.handleProfileMenuOpen = this.handleProfileMenuOpen.bind(this);
@@ -145,6 +150,10 @@ class App extends Component {
 
     setMobileMoreAnchorEl(currentTarget) {
         this.setState({mobileMoreAnchorEl: currentTarget});
+    }
+
+    setOpen(openTarget) {
+        this.setState({open: openTarget});
     }
 
     handleProfileMenuOpen = (event) => {
@@ -166,6 +175,10 @@ class App extends Component {
     handleProfileMenuClose = () => {
         this.setProfileMoreAnchorEl(null);
         this.handleMobileMenuClose();
+    };
+
+    handleClick = () => {
+        this.setOpen(!this.state.open);
     };
 
     render() {
@@ -210,22 +223,6 @@ class App extends Component {
                 open={isMobileMenuOpen}
                 onClose={this.handleMobileMenuClose}
             >
-                <MenuItem>
-                    <IconButton aria-label="show 4 new mails" color="inherit">
-                        <Badge badgeContent={4} color="secondary">
-                            <MailIcon/>
-                        </Badge>
-                    </IconButton>
-                    <p>Messages</p>
-                </MenuItem>
-                <MenuItem>
-                    <IconButton aria-label="show 11 new notifications" color="inherit">
-                        <Badge badgeContent={11} color="secondary">
-                            <NotificationsIcon/>
-                        </Badge>
-                    </IconButton>
-                    <p>Notifications</p>
-                </MenuItem>
                 <MenuItem onClick={this.handleProfileMenuOpen}>
                     <IconButton
                         aria-label="account of current user"
@@ -332,6 +329,25 @@ class App extends Component {
                                             <ListItemIcon><HomeIcon/></ListItemIcon>
                                             <ListItemText primary={routeConstants.DASHBOARD}/>
                                         </ListItem>
+                                        <ListItem button onClick={this.handleClick}>
+                                            <ListItemIcon>
+                                                <HelpOutline/>
+                                            </ListItemIcon>
+                                            <ListItemText primary={routeConstants.QUESTION}/>
+                                            {this.state.open ? <ExpandLess/> : <ExpandMore/>}
+                                        </ListItem>
+                                        <Collapse in={this.state.open} timeout="auto" unmountOnExit>
+                                            <List component="div" disablePadding>
+                                                <ListItem button key={routeConstants.QUESTION_CREATE} component={Link}
+                                                          to={routeConstants.QUESTION_CREATE_URL}
+                                                          className={classes.nested}>
+                                                    <ListItemIcon>
+                                                        <AddCircleOutline/>
+                                                    </ListItemIcon>
+                                                    <ListItemText primary={routeConstants.QUESTION_CREATE}/>
+                                                </ListItem>
+                                            </List>
+                                        </Collapse>
                                     </List>
                                 </div>
                             </Drawer>}
@@ -345,6 +361,7 @@ class App extends Component {
                                 <PrivateRoute path={routeConstants.HOME_URL} exact component={() => <Dashboard/>}/>
                                 <PrivateRoute path={routeConstants.DASHBOARD_URL} exact component={() => <Dashboard/>}/>
                                 <PrivateRoute path={routeConstants.PROFILE_URL} exact component={() => <Profile/>}/>
+                                <PrivateRoute path={routeConstants.QUESTION_CREATE_URL} exact component={() => <Dashboard/>}/>
                                 <Route component={() => <ErrorPageNotFound/>}/>
                             </Switch>
                         </main>

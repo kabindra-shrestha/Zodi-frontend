@@ -174,7 +174,7 @@ class App extends Component {
         const {classes} = this.props;
 
         const {alert, loggedIn, user} = this.props;
-        const heading = "Welcome To Zodi";
+        const heading = "Welcome To Kalon";
         const quote = "This project includes simple spring boot application with spring security and react js as frontend for authentication with JWT.";
         const footer = "Kabindra Shrestha";
 

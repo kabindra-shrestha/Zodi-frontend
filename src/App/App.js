@@ -110,13 +110,16 @@ function setTitle(history) {
     if (history.location.pathname === routeConstants.PROFILE_URL) {
         TITLE = routeConstants.PROFILE;
     }
+    if (history.location.pathname === routeConstants.QUESTION_CREATE_URL) {
+        TITLE = routeConstants.QUESTION + " " + routeConstants.QUESTION_CREATE;
+    }
 }
 
 class App extends Component {
 
     profileMoreAnchorEl;
     mobileMoreAnchorEl;
-    open;
+    isQuestionOpen;
 
     constructor(props) {
         super(props);
@@ -135,7 +138,7 @@ class App extends Component {
         this.state = {
             profileMoreAnchorEl: null,
             mobileMoreAnchorEl: null,
-            open: false,
+            isQuestionOpen: false,
         };
 
         this.handleProfileMenuOpen = this.handleProfileMenuOpen.bind(this);
@@ -153,7 +156,7 @@ class App extends Component {
     }
 
     setOpen(openTarget) {
-        this.setState({open: openTarget});
+        this.setState({isQuestionOpen: openTarget});
     }
 
     handleProfileMenuOpen = (event) => {
@@ -178,7 +181,7 @@ class App extends Component {
     };
 
     handleClick = () => {
-        this.setOpen(!this.state.open);
+        this.setOpen(!this.state.isQuestionOpen);
     };
 
     render() {
@@ -334,9 +337,9 @@ class App extends Component {
                                                 <HelpOutline/>
                                             </ListItemIcon>
                                             <ListItemText primary={routeConstants.QUESTION}/>
-                                            {this.state.open ? <ExpandLess/> : <ExpandMore/>}
+                                            {this.state.isQuestionOpen ? <ExpandLess/> : <ExpandMore/>}
                                         </ListItem>
-                                        <Collapse in={this.state.open} timeout="auto" unmountOnExit>
+                                        <Collapse in={this.state.isQuestionOpen} timeout="auto" unmountOnExit>
                                             <List component="div" disablePadding>
                                                 <ListItem button key={routeConstants.QUESTION_CREATE} component={Link}
                                                           to={routeConstants.QUESTION_CREATE_URL}
@@ -361,7 +364,8 @@ class App extends Component {
                                 <PrivateRoute path={routeConstants.HOME_URL} exact component={() => <Dashboard/>}/>
                                 <PrivateRoute path={routeConstants.DASHBOARD_URL} exact component={() => <Dashboard/>}/>
                                 <PrivateRoute path={routeConstants.PROFILE_URL} exact component={() => <Profile/>}/>
-                                <PrivateRoute path={routeConstants.QUESTION_CREATE_URL} exact component={() => <Dashboard/>}/>
+                                <PrivateRoute path={routeConstants.QUESTION_CREATE_URL} exact
+                                              component={() => <Dashboard/>}/>
                                 <Route component={() => <ErrorPageNotFound/>}/>
                             </Switch>
                         </main>

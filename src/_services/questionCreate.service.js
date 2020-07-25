@@ -40,7 +40,7 @@ function handleResponse(response) {
                 window.location.reload(true);
             }
 
-            const error = (data && data.message) || response.statusText;
+            const error = data && data.error_description;
             return Promise.reject(error);
         }
 

@@ -20,7 +20,7 @@ export function questionCreate(state = initialState, action) {
         case questionCreateConstants.QUESTION_CREATE_FAILURE:
             return {
                 questionCreateStatus: false,
-                questionCreateMessage: action.questionCreate.message,
+                questionCreateMessage: action.error,
             };
         case questionCreateConstants.LOGOUT:
             return {};

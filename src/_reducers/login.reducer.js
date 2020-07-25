@@ -3,9 +3,10 @@ import {loginConstants} from '../_constants';
 let user = JSON.parse(localStorage.getItem('user'));
 
 const initialState = {
-    user: user ? {loggedIn: true, user} : {},
+    loggedIn: !!user,
     loginStatus: false,
-    loginMessage: ''
+    loginMessage: '',
+    user: user ? user : {}
 };
 
 export function login(state = initialState, action) {

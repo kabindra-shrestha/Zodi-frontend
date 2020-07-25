@@ -5,10 +5,10 @@ import {history} from '../_helpers';
 import {alertActions} from '../_actions';
 import {Login} from "../login/Login";
 import {Dashboard} from "../dashboard/Dashboard";
+import {QuestionCreate} from "../question/create/QuestionCreate";
 import {Profile} from "../profile/Profile";
 import {PrivateRoute} from "../_components";
 import Welcome from "../main/Welcome";
-import './App.css';
 import ErrorPageNotFound from "../error/ErrorPageNotFound";
 import {Alert} from '@material-ui/lab';
 import CssBaseline from "@material-ui/core/CssBaseline/CssBaseline";
@@ -79,9 +79,6 @@ class App extends Component {
 
         return (
             <div>
-                {alert.message &&
-                <Alert severity="error">{alert.message}</Alert>
-                }
                 <Router history={history}>
                     <div className={classes.root}>
                         <CssBaseline/>
@@ -91,6 +88,9 @@ class App extends Component {
                         </div>}
                         <main className={classes.content}>
                             {TITLE !== routeConstants.SITE && <div>{loggedIn && <Toolbar/>}</div>}
+                            {alert.message &&
+                            <Alert severity={alert.type}>{alert.message}</Alert>
+                            }
                             <Switch className="padding-left">
                                 <Route path={routeConstants.SITE_URL} exact
                                        component={() => <Welcome heading={heading} quote={quote} footer={footer}/>}/>
@@ -99,7 +99,7 @@ class App extends Component {
                                 <PrivateRoute path={routeConstants.DASHBOARD_URL} exact component={() => <Dashboard/>}/>
                                 <PrivateRoute path={routeConstants.PROFILE_URL} exact component={() => <Profile/>}/>
                                 <PrivateRoute path={routeConstants.QUESTION_CREATE_URL} exact
-                                              component={() => <Dashboard/>}/>
+                                              component={() => <QuestionCreate/>}/>
                                 <Route component={() => <ErrorPageNotFound/>}/>
                             </Switch>
                         </main>
@@ -111,8 +111,8 @@ class App extends Component {
 }
 
 function mapStateToProps(state) {
-    const {alert, authentication} = state;
-    const {loggedIn, user} = authentication;
+    const {alert, login} = state;
+    const {loggedIn, user} = login;
     return {
         alert,
         loggedIn,

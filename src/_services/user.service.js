@@ -1,13 +1,9 @@
 import {authHeader} from '../_helpers';
+import {apisConstants} from "../_constants";
 
 export const userService = {
     getAll
 };
-
-function logout() {
-    // remove user from local storage to log user out
-    localStorage.removeItem('user');
-}
 
 function getAll() {
     const requestOptions = {
@@ -15,7 +11,7 @@ function getAll() {
         headers: authHeader()
     };
 
-    return fetch(process.env.REACT_APP_API_ENDPOINT + process.env.REACT_APP_API_VERSION_V1 + `/users/get`, requestOptions)
+    return fetch(process.env.REACT_APP_API_ENDPOINT + process.env.REACT_APP_API_VERSION_V1 + apisConstants.GET_USER_URL, requestOptions)
         .then(handleResponse)
         .then(users => {
             if (users) {
@@ -24,6 +20,12 @@ function getAll() {
 
             return users;
         });
+}
+
+function logout() {
+    // remove user from local storage to log user out
+    localStorage.removeItem('user');
+    localStorage.removeItem('userData');
 }
 
 function handleResponse(response) {

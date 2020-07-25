@@ -1,36 +1,26 @@
 /*import config from 'config';*/
 
+import {authHeader} from "../_helpers";
 import {apisConstants} from "../_constants";
 
-export const loginService = {
-    login,
-    logout
+export const questionCreateService = {
+    questionCreate
 };
 
-function login(username, password) {
+function questionCreate(question) {
     const form = new FormData();
-    form.append("username", username);
-    form.append("password", password);
-    form.append("grant_type", "password");
+    form.append("question", question);
 
     const requestOptions = {
         method: 'POST',
-        headers: {
-            'Authorization': 'Basic ' + Buffer.from(process.env.REACT_APP_BASIC_AUTH_USERNAME + ":" + process.env.REACT_APP_BASIC_AUTH_PASSWORD).toString('base64')
-        },
+        headers: authHeader(),
         body: form
     };
 
-    return fetch(process.env.REACT_APP_API_ENDPOINT + process.env.REACT_APP_API_VERSION_V1 + apisConstants.LOGIN_URL, requestOptions)
+    return fetch(process.env.REACT_APP_API_ENDPOINT + process.env.REACT_APP_API_VERSION_V1 + apisConstants.QUESTION_CREATE_URL, requestOptions)
         .then(handleResponse)
-        .then(user => {
-            // login successful if there's a jwt token in the response
-            if (user.access_token) {
-                // store user details and jwt token in local storage to keep user logged in between page refreshes
-                localStorage.setItem('user', JSON.stringify(user));
-            }
-
-            return user;
+        .then(questionCreate => {
+            return questionCreate;
         });
 }
 

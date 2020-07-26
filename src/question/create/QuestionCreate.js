@@ -73,7 +73,7 @@ class QuestionCreate extends Component {
                         value={question}
                         autoFocus
                         onChange={this.handleChange}
-                        className={(submitted && !question ? 'has-error' : '')}
+                        error={submitted && !question}
                         helperText={submitted && !question && "Question is required"}/>
                     <Button
                         variant="contained"

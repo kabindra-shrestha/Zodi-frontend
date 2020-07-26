@@ -105,7 +105,7 @@ class Login extends Component {
                             autoComplete="email"
                             autoFocus
                             onChange={this.handleChange}
-                            className={(submitted && !username ? 'has-error' : '')}
+                            error={submitted && !username}
                             helperText={submitted && !username && "Username is required"}/>
                         <TextField
                             variant="outlined"
@@ -119,7 +119,7 @@ class Login extends Component {
                             value={password}
                             autoComplete="current-password"
                             onChange={this.handleChange}
-                            className={(submitted && !password ? 'has-error' : '')}
+                            error={submitted && !password}
                             helperText={submitted && !password && "Password is required"}/>
                         {/*<FormControlLabel
                             control={<Checkbox value="remember" color="primary"/>}

@@ -8,6 +8,8 @@ import Card from "@material-ui/core/Card/Card";
 import {userActions} from "../_actions";
 import Grid from "@material-ui/core/Grid";
 import Avatar from "@material-ui/core/Avatar";
+import Badge from "@material-ui/core/Badge";
+import {green, red} from "@material-ui/core/colors";
 
 const useStyles = theme => ({
     root: {
@@ -78,6 +80,13 @@ const useStyles = theme => ({
         flexShrink: 0,
         flexGrow: 0
     },
+    customBadgeSuccess: {
+        backgroundColor: green.A400,
+        color: "white"
+    }, customBadgeError: {
+        backgroundColor: red.A400,
+        color: "white"
+    },
     name: {
         textAlign: 'center',
         marginTop: '8px',
@@ -87,6 +96,36 @@ const useStyles = theme => ({
         marginTop: '8px',
     },
 });
+
+const StyledBadge = withStyles((theme) => ({
+    badge: {
+        backgroundColor: '#44b700',
+        color: '#44b700',
+        boxShadow: `0 0 0 2px ${theme.palette.background.paper}`,
+        '&::after': {
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            width: '100%',
+            height: '100%',
+            borderRadius: '50%',
+            animation: '$ripple 1.2s infinite ease-in-out',
+            border: '1px solid currentColor',
+            content: '""',
+        },
+        margin: 'auto',
+    },
+    '@keyframes ripple': {
+        '0%': {
+            transform: 'scale(.8)',
+            opacity: 1,
+        },
+        '100%': {
+            transform: 'scale(2.4)',
+            opacity: 0,
+        },
+    },
+}))(Badge);
 
 class Profile extends Component {
     componentDidMount() {
@@ -110,7 +149,18 @@ class Profile extends Component {
                     <Card>
                         {usersData &&
                         <CardContent className={classes.content}>
-                            <Avatar className={classes.avatar} src={usersData.avatar}/>
+                            <div className={classes.avatar}>
+                                <StyledBadge
+                                    overlap="circle"
+                                    anchorOrigin={{
+                                        vertical: 'bottom',
+                                        horizontal: 'right',
+                                    }}
+                                    variant="dot"
+                                    classes={{badge: usersData.status ? classes.customBadgeSuccess : classes.customBadgeError}}>
+                                    <Avatar className={classes.avatar} src={usersData.avatar}/>
+                                </StyledBadge>
+                            </div>
                             <Typography className={classes.name} variant="h3" gutterBottom>
                                 {usersData.firstName + " " + usersData.lastName}
                             </Typography>

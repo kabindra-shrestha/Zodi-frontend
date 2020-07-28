@@ -15,7 +15,7 @@ const useStyles = theme => ({
         position: 'relative'
     },
     content: {
-        padding: '4rem 2rem !important',
+        padding: '2rem 2rem !important',
         backgroundColor: theme.palette.card.background,
         borderRadius: '.3rem'
     },

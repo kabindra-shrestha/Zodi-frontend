@@ -6,15 +6,18 @@ import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
 import Card from "@material-ui/core/Card/Card";
 import {userActions} from "../_actions";
+import Grid from "@material-ui/core/Grid";
+import Avatar from "@material-ui/core/Avatar";
 
 const useStyles = theme => ({
     root: {
         margin: '1.5rem',
         borderWidth: '.2rem',
-        position: 'relative'
+        position: 'relative',
+        display: 'flex'
     },
     content: {
-        padding: '4rem 2rem !important',
+        padding: '2rem 2rem !important',
         backgroundColor: theme.palette.card.background,
         borderRadius: '.3rem'
     },
@@ -68,6 +71,21 @@ const useStyles = theme => ({
         boxSizing: 'content-box',
         height: 0,
     },
+    avatar: {
+        margin: 'auto',
+        height: 100,
+        width: 100,
+        flexShrink: 0,
+        flexGrow: 0
+    },
+    name: {
+        textAlign: 'center',
+        marginTop: '8px',
+    },
+    info: {
+        textAlign: 'center',
+        marginTop: '8px',
+    },
 });
 
 class Profile extends Component {
@@ -79,42 +97,80 @@ class Profile extends Component {
         const {classes} = this.props;
         const {usersData} = this.props;
 
-        return (<Card className={classes.root}>
-            {usersData &&
-            <CardContent className={classes.content}>
-                <Typography className={classes.title} gutterBottom>
-                    <p>{usersData.firstName + " " + usersData.lastName}</p>
-                </Typography>
-                <Typography className={classes.quote}>
-                    <p>Name: {usersData.name}</p>
-                    <p>Username: {usersData.username}</p>
-                    <p>Email: {usersData.email}</p>
-                    <p>Age: {usersData.age}</p>
-                    <p>Gender: {usersData.gender}</p>
-                    <p>Avatar: {usersData.avatar}</p>
-                    <p>Current City: {usersData.currentCity}</p>
-                    <p>School: {usersData.school}</p>
-                    <p>Has Liked You: {usersData.hasLikedYou}</p>
-                    <p>Kalon Points: {usersData.kalonPoints}</p>
-                    <p>Looking For: {usersData.lookingFor}</p>
-                    <p>Photos: {usersData.photos}</p>
-                    <p>Profile Pic: {usersData.profilePic}</p>
-                    <p>Status: {usersData.status}</p>
-                    <p>Premium: {usersData.premium}</p>
-                    <p>User Verified: {usersData.userVerified}</p>
-                    <p>Email Verified: {usersData.emailVerified}</p>
-                    <p>Verification Deadline: {usersData.verificationDeadline}</p>
-                    <p>Profile Updated: {usersData.profileUpdated}</p>
-                    <p>City Id: {usersData.cityId}</p>
-                </Typography>
-                <hr className={classes.space}/>
-                <Typography className={classes.footer}>
-                    {usersData.status &&
-                    <p className="text-danger">STATUS: {usersData.status ? "Active" : "Inactive"}</p>}
-                </Typography>
-            </CardContent>
-            }
-        </Card>);
+        return (<div className={classes.root}>
+            <Grid
+                container
+                spacing={4}>
+                <Grid
+                    item
+                    lg={4}
+                    md={6}
+                    xl={4}
+                    xs={12}>
+                    <Card>
+                        {usersData &&
+                        <CardContent className={classes.content}>
+                            <Avatar className={classes.avatar} src={usersData.avatar}/>
+                            <Typography className={classes.name} variant="h3" gutterBottom>
+                                {usersData.firstName + " " + usersData.lastName}
+                            </Typography>
+                            <Typography className={classes.info} variant="body1" gutterBottom>
+                                {usersData.address + " " + usersData.lastName}
+                            </Typography>
+                            <hr className={classes.space}/>
+                            <Typography className={classes.footer}>
+                                {/*{usersData.status &&*/}
+                                STATUS: {usersData.status ? "Active" : "Inactive"}{/*}*/}
+                            </Typography>
+                        </CardContent>
+                        }
+                    </Card>
+                </Grid>
+                <Grid
+                    item
+                    lg={8}
+                    md={6}
+                    xl={8}
+                    xs={12}>
+                    <Card>
+                        {usersData &&
+                        <CardContent className={classes.content}>
+                            <Typography className={classes.name} variant="h3" gutterBottom>
+                                {usersData.firstName + " " + usersData.lastName}
+                            </Typography>
+                            <Typography className={classes.quote}>
+                                Name: {usersData.name}
+                                Username: {usersData.username}
+                                Email: {usersData.email}
+                                Age: {usersData.age}
+                                Gender: {usersData.gender}
+                                Avatar: {usersData.avatar}
+                                Current City: {usersData.currentCity}
+                                School: {usersData.school}
+                                Has Liked You: {usersData.hasLikedYou}
+                                Kalon Points: {usersData.kalonPoints}
+                                Looking For: {usersData.lookingFor}
+                                Photos: {usersData.photos}
+                                Profile Pic: {usersData.profilePic}
+                                Status: {usersData.status}
+                                Premium: {usersData.premium}
+                                User Verified: {usersData.userVerified}
+                                Email Verified: {usersData.emailVerified}
+                                Verification Deadline: {usersData.verificationDeadline}
+                                Profile Updated: {usersData.profileUpdated}
+                                City Id: {usersData.cityId}
+                            </Typography>
+                            <hr className={classes.space}/>
+                            <Typography className={classes.footer}>
+                                {/*{usersData.status &&*/}
+                                STATUS: {usersData.status ? "Active" : "Inactive"}{/*}*/}
+                            </Typography>
+                        </CardContent>
+                        }
+                    </Card>
+                </Grid>
+            </Grid>
+        </div>);
     }
 }
 

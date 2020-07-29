@@ -14,10 +14,10 @@ const Theme = createMuiTheme({
             main: red.A700,
         },
         background: {
-            default: '#fff',
+            default: '#fefefe',
         },
         card: {
-            background: '#fafafa',
+            background: '#fff',
         },
         text: {
             default: '#212529',

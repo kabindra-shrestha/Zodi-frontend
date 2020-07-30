@@ -5,6 +5,7 @@ import {history} from '../_helpers';
 import {alertActions} from '../_actions';
 import {Login} from "../login/Login";
 import {Dashboard} from "../dashboard/Dashboard";
+import {UserList} from "../user/list/UserList";
 import {QuestionCreate} from "../question/create/QuestionCreate";
 import {Profile} from "../profile/Profile";
 import {PrivateRoute} from "../_components";
@@ -49,6 +50,9 @@ function setTitle(history) {
     }
     if (history.location.pathname === routeConstants.QUESTION_CREATE_URL) {
         TITLE = routeConstants.QUESTION + " " + routeConstants.QUESTION_CREATE;
+    }
+    if (history.location.pathname === routeConstants.USER_LIST_URL) {
+        TITLE = routeConstants.USER + " " + routeConstants.USER_LIST;
     }
 }
 
@@ -98,6 +102,8 @@ class App extends Component {
                                 <PrivateRoute path={routeConstants.HOME_URL} exact component={() => <Dashboard/>}/>
                                 <PrivateRoute path={routeConstants.DASHBOARD_URL} exact component={() => <Dashboard/>}/>
                                 <PrivateRoute path={routeConstants.PROFILE_URL} exact component={() => <Profile/>}/>
+                                <PrivateRoute path={routeConstants.USER_LIST_URL} exact
+                                              component={() => <UserList/>}/>
                                 <PrivateRoute path={routeConstants.QUESTION_CREATE_URL} exact
                                               component={() => <QuestionCreate/>}/>
                                 <Route component={() => <ErrorPageNotFound/>}/>

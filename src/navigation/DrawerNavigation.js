@@ -10,7 +10,7 @@ import HomeIcon from '@material-ui/icons/Home';
 import ListItemText from "@material-ui/core/ListItemText/ListItemText";
 import Divider from "@material-ui/core/Divider";
 import {routeConstants} from "../_constants";
-import {AddCircleOutline, ExpandLess, ExpandMore, HelpOutline} from "@material-ui/icons";
+import {AddCircle, ExpandLess, ExpandMore, Help, People, Person} from "@material-ui/icons";
 import Collapse from "@material-ui/core/Collapse";
 import {makeStyles} from "@material-ui/core/styles";
 
@@ -34,9 +34,14 @@ const useStyles = makeStyles((theme) => ({
 
 export default function DrawerNavigation() {
     const classes = useStyles();
+    const [isUserOpen, setIsUserOpen] = React.useState(false);
     const [isQuestionOpen, setIsQuestionOpen] = React.useState(false);
 
-    const handleClick = () => {
+    const handleUserClick = () => {
+        setIsUserOpen(!isUserOpen);
+    };
+
+    const handleQuestionClick = () => {
         setIsQuestionOpen(!isQuestionOpen);
     };
 
@@ -69,9 +74,28 @@ export default function DrawerNavigation() {
                         <ListItemIcon><HomeIcon/></ListItemIcon>
                         <ListItemText primary={routeConstants.DASHBOARD}/>
                     </ListItem>
-                    <ListItem button onClick={handleClick}>
+                    <ListItem button onClick={handleUserClick}>
                         <ListItemIcon>
-                            <HelpOutline/>
+                            <Person/>
+                        </ListItemIcon>
+                        <ListItemText primary={routeConstants.USER}/>
+                        {isUserOpen ? <ExpandLess/> : <ExpandMore/>}
+                    </ListItem>
+                    <Collapse in={isUserOpen} timeout="auto" unmountOnExit>
+                        <List component="div" disablePadding>
+                            <ListItem button key={routeConstants.USER_LIST} component={Link}
+                                      to={routeConstants.USER_LIST_URL}
+                                      className={classes.nested}>
+                                <ListItemIcon>
+                                    <People/>
+                                </ListItemIcon>
+                                <ListItemText primary={routeConstants.USER_LIST}/>
+                            </ListItem>
+                        </List>
+                    </Collapse>
+                    <ListItem button onClick={handleQuestionClick}>
+                        <ListItemIcon>
+                            <Help/>
                         </ListItemIcon>
                         <ListItemText primary={routeConstants.QUESTION}/>
                         {isQuestionOpen ? <ExpandLess/> : <ExpandMore/>}
@@ -82,7 +106,7 @@ export default function DrawerNavigation() {
                                       to={routeConstants.QUESTION_CREATE_URL}
                                       className={classes.nested}>
                                 <ListItemIcon>
-                                    <AddCircleOutline/>
+                                    <AddCircle/>
                                 </ListItemIcon>
                                 <ListItemText primary={routeConstants.QUESTION_CREATE}/>
                             </ListItem>

@@ -119,5 +119,5 @@ function mapStateToProps(state) {
     };
 }
 
-const connectedDashboard = withStyles(useStyles, {withTheme: true})(withRouter(connect(mapStateToProps)(Dashboard)));
-export {connectedDashboard as Dashboard};
+const connectedDashboardPage = withStyles(useStyles, {withTheme: true})(withRouter(connect(mapStateToProps)(Dashboard)));
+export {connectedDashboardPage as Dashboard};

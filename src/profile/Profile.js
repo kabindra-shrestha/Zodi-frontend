@@ -523,5 +523,5 @@ function mapStateToProps(state) {
     };
 }
 
-const connectedDashboard = withStyles(useStyles, {withTheme: true})(withRouter(connect(mapStateToProps)(Profile)));
-export {connectedDashboard as Profile};
+const connectedProfilePage = withStyles(useStyles, {withTheme: true})(withRouter(connect(mapStateToProps)(Profile)));
+export {connectedProfilePage as Profile};

@@ -126,5 +126,5 @@ function mapStateToProps(state) {
     };
 }
 
-const connectedApp = withStyles(useStyles, {withTheme: true})(connect(mapStateToProps)(App));
-export {connectedApp as App};
+const connectedAppPage = withStyles(useStyles, {withTheme: true})(connect(mapStateToProps)(App));
+export {connectedAppPage as App};

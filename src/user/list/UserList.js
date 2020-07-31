@@ -1,101 +1,121 @@
 import React, {Component} from 'react';
-import {Button, CircularProgress, TextField, withStyles} from '@material-ui/core';
-import {questionCreateActions} from "../../_actions";
-import {connect} from "react-redux";
+import {connect} from 'react-redux';
+
+import {userActions} from '../../_actions';
+import {withStyles} from "@material-ui/core";
 import {withRouter} from "react-router-dom";
+import CardContent from "@material-ui/core/CardContent";
+import Typography from "@material-ui/core/Typography";
+import Card from "@material-ui/core/Card/Card";
 
 const useStyles = theme => ({
     root: {
-        flexGrow: 1,
-        display: 'flex',
+        margin: '1.5rem',
+        borderWidth: '.2rem',
+        position: 'relative'
     },
-    form: {
-        width: '100%', // Fix IE 11 issue.
-        marginTop: theme.spacing(1),
+    content: {
+        padding: '2rem 2rem !important',
+        backgroundColor: theme.palette.card.background,
+        borderRadius: '.3rem'
     },
-    submit: {
-        margin: theme.spacing(3, 0, 2),
-    },
-    spinner: {
+    title: {
+        fontSize: '3.5rem',
+        fontWeight: 300,
+        lineHeight: 1.2,
+        marginBottom: '.5rem',
+        marginTop: 0,
         display: 'block',
-        marginLeft: 'auto',
-        marginRight: 'auto'
+        marginBlockStart: '0.67em',
+        marginBlockEnd: '0.67em',
+        marginInlineStart: '0px',
+        marginInlineEnd: '0px',
+        color: theme.palette.text,
+        textAlign: 'left'
+    },
+    quote: {
+        fontSize: '1.25rem',
+        fontWeight: 300,
+        marginTop: 0,
+        marginBottom: '1rem',
+        display: 'block',
+        marginBlockStart: '1em',
+        marginBlockEnd: '1em',
+        marginInlineStart: '0px',
+        marginInlineEnd: '0px',
+        lineHeight: 1.5,
+        color: theme.palette.text,
+        textAlign: 'left'
+    },
+    footer: {
+        marginTop: 0,
+        marginBottom: '1rem',
+        display: 'block',
+        marginBlockStart: '1em',
+        marginBlockEnd: '1em',
+        marginInlineStart: '0px',
+        marginInlineEnd: '0px',
+        fontSize: '1rem',
+        fontWeight: 400,
+        lineHeight: 1.5,
+        color: theme.palette.text,
+        textAlign: 'left'
+    },
+    space: {
+        marginBottom: '1.5rem!important',
+        marginTop: '1.5rem!important',
+        border: 0,
+        borderTop: '1px solid rgba(0,0,0,.1)',
+        boxSizing: 'content-box',
+        height: 0,
     },
 });
 
 class UserList extends Component {
-
-    constructor(props) {
-        super(props);
-
-        this.state = {
-            question: '',
-            submitted: false
-        };
-
-        this.handleChange = this.handleChange.bind(this);
-        this.handleSubmit = this.handleSubmit.bind(this);
-    }
-
-    handleChange(e) {
-        const {name, value} = e.target;
-        this.setState({[name]: value});
-    }
-
-    handleSubmit(e) {
-        e.preventDefault();
-
-        this.setState({submitted: true});
-        const {question} = this.state;
-        const {dispatch} = this.props;
-        if (question) {
-            dispatch(questionCreateActions.questionCreate(question));
-        }
+    componentDidMount() {
+        this.props.dispatch(userActions.getAll());
     }
 
     render() {
         const {classes} = this.props;
+        const {users, usersData} = this.props;
 
-        const {fetching} = this.props;
-        const {question, submitted} = this.state;
-
-        return (
-            <div className={classes.root}>
-                <form className={classes.form} noValidate onSubmit={this.handleSubmit}>
-                    <TextField
-                        margin="normal"
-                        required
-                        fullWidth
-                        id="question"
-                        name="question"
-                        label="Question"
-                        type="text"
-                        value={question}
-                        autoFocus
-                        onChange={this.handleChange}
-                        error={submitted && !question}
-                        helperText={submitted && !question && "Question is required"}/>
-                    <Button
-                        variant="contained"
-                        fullWidth
-                        type="submit"
-                        color="primary"
-                        className={classes.submit}>
-                        Submit
-                    </Button>
-                    {fetching &&
-                    <CircularProgress className={classes.spinner}/>
-                    }
-                </form>
+        return (<div>
+                <div>
+                    <Card className={classes.root}>
+                        <CardContent className={classes.content}>
+                            <Typography className={classes.title} gutterBottom>
+                                {usersData &&
+                                <p>Hi {usersData.firstName + " " + usersData.lastName}!</p>}
+                            </Typography>
+                            <Typography className={classes.quote}>
+                                <p>You're logged in with React & JWT!!</p>
+                            </Typography>
+                            <hr className={classes.space}/>
+                            <Typography className={classes.footer}>
+                                {users.loading && <em>Loading users...</em>}
+                                {users.error && <p className="text-danger">ERROR: {users.error}</p>}
+                            </Typography>
+                            <Typography className={classes.footer}>
+                                {users.usersStatus &&
+                                <p className="text-danger">STATUS: {users.usersStatus ? "True" : "False"}</p>}
+                                {users.usersMessage &&
+                                <p className="text-danger">MESSAGE: {users.usersMessage}</p>}
+                            </Typography>
+                        </CardContent>
+                    </Card>
+                </div>
             </div>
         );
     }
 }
 
 function mapStateToProps(state) {
-    const {fetching} = state.questionCreate;
+    const {users} = state;
+    const {usersData} = users;
     return {
-        fetching
+        users,
+        usersData
     };
 }
 

@@ -2,8 +2,14 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 
 import {userListActions} from '../../_actions';
-import {withStyles} from "@material-ui/core";
+import {Paper, withStyles} from "@material-ui/core";
 import {withRouter} from "react-router-dom";
+import TableContainer from "@material-ui/core/TableContainer";
+import Table from "@material-ui/core/Table";
+import TableHead from "@material-ui/core/TableHead";
+import TableRow from "@material-ui/core/TableRow";
+import TableCell from "@material-ui/core/TableCell";
+import TableBody from "@material-ui/core/TableBody";
 
 const useStyles = theme => ({
     root: {
@@ -24,8 +30,36 @@ class UserList extends Component {
 
         return (
             <div className={classes.root}>
-                {userListData && userListData.map((userList) => <li
-                    key={userList.username}>{userList.username} </li>)}
+                <TableContainer component={Paper}>
+                    <Table className={classes.table} aria-label="simple table">
+                        <TableHead>
+                            <TableRow>
+                                <TableCell>First Name</TableCell>
+                                <TableCell>Last Name</TableCell>
+                                <TableCell>User Name</TableCell>
+                            </TableRow>
+                        </TableHead>
+                        <TableBody>
+                            {userListData && userListData.length > 0 ? userListData.map((userList) =>
+                                <TableRow key={userList.username}>
+                                    <TableCell component="th" scope="row">
+                                        {userList.firstName}
+                                    </TableCell>
+                                    <TableCell component="th" scope="row">
+                                        {userList.lastName}
+                                    </TableCell>
+                                    <TableCell component="th" scope="row">
+                                        {userList.username}
+                                    </TableCell>
+                                </TableRow>
+                            ) : <TableRow>
+                                <TableCell colSpan={3} align="center">
+                                    No Users Available
+                                </TableCell>
+                            </TableRow>}
+                        </TableBody>
+                    </Table>
+                </TableContainer>
             </div>
         );
     }

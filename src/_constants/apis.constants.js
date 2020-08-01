@@ -1,5 +1,6 @@
 export const apisConstants = {
     LOGIN_URL: '/oauth/token',
-    GET_USER_URL: '/users/get',
+    USER_URL: '/users/get',
+    USER_LIST_URL: '/users/getAll',
     QUESTION_CREATE_URL: '/questions/create',
 };

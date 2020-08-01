@@ -1,24 +1,22 @@
-import {authHeader} from '../_helpers';
+/*import config from 'config';*/
+
+import {authHeader} from "../_helpers";
 import {apisConstants} from "../_constants";
 
-export const userService = {
-    getAll
+export const userListService = {
+    userList
 };
 
-function getAll() {
+function userList(page) {
     const requestOptions = {
         method: 'GET',
-        headers: authHeader()
+        headers: authHeader(),
     };
 
-    return fetch(process.env.REACT_APP_API_ENDPOINT + process.env.REACT_APP_API_VERSION_V1 + apisConstants.USER_URL, requestOptions)
+    return fetch(process.env.REACT_APP_API_ENDPOINT + process.env.REACT_APP_API_VERSION_V1 + apisConstants.USER_LIST_URL + '?page=' + page, requestOptions)
         .then(handleResponse)
-        .then(users => {
-            if (users) {
-                localStorage.setItem('userData', JSON.stringify(users));
-            }
-
-            return users;
+        .then(userList => {
+            return userList;
         });
 }
 
@@ -38,7 +36,7 @@ function handleResponse(response) {
                 window.location.reload(true);
             }
 
-            const error = (data && data.message) || response.statusText;
+            const error = data && data.error_description;
             return Promise.reject(error);
         }
 

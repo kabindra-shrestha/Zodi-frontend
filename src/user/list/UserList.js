@@ -1,12 +1,9 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 
-import {userActions} from '../../_actions';
+import {userListActions} from '../../_actions';
 import {withStyles} from "@material-ui/core";
 import {withRouter} from "react-router-dom";
-import CardContent from "@material-ui/core/CardContent";
-import Typography from "@material-ui/core/Typography";
-import Card from "@material-ui/core/Card/Card";
 
 const useStyles = theme => ({
     root: {
@@ -73,49 +70,26 @@ const useStyles = theme => ({
 
 class UserList extends Component {
     componentDidMount() {
-        this.props.dispatch(userActions.getAll());
+        this.props.dispatch(userListActions.userList(0));
     }
 
     render() {
-        const {classes} = this.props;
-        const {users, usersData} = this.props;
+        // const {classes} = this.props;
+        // const {userList, userListData} = this.props;
+        const {userListData} = this.props;
 
-        return (<div>
-                <div>
-                    <Card className={classes.root}>
-                        <CardContent className={classes.content}>
-                            <Typography className={classes.title} gutterBottom>
-                                {usersData &&
-                                <p>Hi {usersData.firstName + " " + usersData.lastName}!</p>}
-                            </Typography>
-                            <Typography className={classes.quote}>
-                                <p>You're logged in with React & JWT!!</p>
-                            </Typography>
-                            <hr className={classes.space}/>
-                            <Typography className={classes.footer}>
-                                {users.loading && <em>Loading users...</em>}
-                                {users.error && <p className="text-danger">ERROR: {users.error}</p>}
-                            </Typography>
-                            <Typography className={classes.footer}>
-                                {users.usersStatus &&
-                                <p className="text-danger">STATUS: {users.usersStatus ? "True" : "False"}</p>}
-                                {users.usersMessage &&
-                                <p className="text-danger">MESSAGE: {users.usersMessage}</p>}
-                            </Typography>
-                        </CardContent>
-                    </Card>
-                </div>
-            </div>
+        return (
+            <div>{userListData && userListData.map((userList) => <li key={userList}>{userList.username} </li>)}</div>
         );
     }
 }
 
 function mapStateToProps(state) {
-    const {users} = state;
-    const {usersData} = users;
+    const {userList} = state;
+    const {userListData} = userList;
     return {
-        users,
-        usersData
+        userList,
+        userListData
     };
 }
 

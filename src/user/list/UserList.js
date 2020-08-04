@@ -38,6 +38,7 @@ class UserList extends Component {
                                 <TableCell>Last Name</TableCell>
                                 <TableCell>User Name</TableCell>
                                 <TableCell>Name</TableCell>
+                                <TableCell>Email</TableCell>
                                 <TableCell>Age</TableCell>
                             </TableRow>
                         </TableHead>
@@ -57,11 +58,14 @@ class UserList extends Component {
                                         {userList.name}
                                     </TableCell>
                                     <TableCell component="th" scope="row">
+                                        {userList.email}
+                                    </TableCell>
+                                    <TableCell component="th" scope="row">
                                         {userList.age}
                                     </TableCell>
                                 </TableRow>
                             ) : <TableRow>
-                                <TableCell colSpan={3} align="center">
+                                <TableCell colSpan={6} align="center">
                                     No Users Available
                                 </TableCell>
                             </TableRow>}

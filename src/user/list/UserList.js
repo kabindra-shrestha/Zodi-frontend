@@ -10,6 +10,7 @@ import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import TableCell from "@material-ui/core/TableCell";
 import TableBody from "@material-ui/core/TableBody";
+import Avatar from "@material-ui/core/Avatar";
 
 const useStyles = theme => ({
     root: {
@@ -34,6 +35,7 @@ class UserList extends Component {
                     <Table className={classes.table} aria-label="simple table">
                         <TableHead>
                             <TableRow>
+                                <TableCell>Avatar</TableCell>
                                 <TableCell>First Name</TableCell>
                                 <TableCell>Last Name</TableCell>
                                 <TableCell>User Name</TableCell>
@@ -47,6 +49,9 @@ class UserList extends Component {
                         <TableBody>
                             {userListData && userListData.length > 0 ? userListData.map((userList) =>
                                 <TableRow key={userList.username}>
+                                    <TableCell component="th" scope="row">
+                                        <Avatar src={userList.avatar}/>
+                                    </TableCell>
                                     <TableCell component="th" scope="row">
                                         {userList.firstName}
                                     </TableCell>
@@ -73,7 +78,7 @@ class UserList extends Component {
                                     </TableCell>
                                 </TableRow>
                             ) : <TableRow>
-                                <TableCell colSpan={8} align="center">
+                                <TableCell colSpan={9} align="center">
                                     No Users Available
                                 </TableCell>
                             </TableRow>}

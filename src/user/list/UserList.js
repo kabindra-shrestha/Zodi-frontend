@@ -11,6 +11,8 @@ import TableRow from "@material-ui/core/TableRow";
 import TableCell from "@material-ui/core/TableCell";
 import TableBody from "@material-ui/core/TableBody";
 import Avatar from "@material-ui/core/Avatar";
+import Badge from "@material-ui/core/Badge";
+import {green, red} from "@material-ui/core/colors";
 
 const useStyles = theme => ({
     root: {
@@ -18,7 +20,44 @@ const useStyles = theme => ({
         borderWidth: '.2rem',
         position: 'relative'
     },
+    customBadgeSuccess: {
+        backgroundColor: green.A400,
+        color: "white"
+    }, customBadgeError: {
+        backgroundColor: red.A400,
+        color: "white"
+    },
 });
+
+const StyledBadge = withStyles((theme) => ({
+    badge: {
+        backgroundColor: '#44b700',
+        color: '#44b700',
+        boxShadow: `0 0 0 2px ${theme.palette.background.paper}`,
+        '&::after': {
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            width: '100%',
+            height: '100%',
+            borderRadius: '50%',
+            animation: '$ripple 1.2s infinite ease-in-out',
+            border: '1px solid currentColor',
+            content: '""',
+        },
+        margin: 'auto',
+    },
+    '@keyframes ripple': {
+        '0%': {
+            transform: 'scale(.8)',
+            opacity: 1,
+        },
+        '100%': {
+            transform: 'scale(2.4)',
+            opacity: 0,
+        },
+    },
+}))(Badge);
 
 class UserList extends Component {
     componentDidMount() {
@@ -50,7 +89,16 @@ class UserList extends Component {
                             {userListData && userListData.length > 0 ? userListData.map((userList) =>
                                 <TableRow key={userList.username}>
                                     <TableCell component="th" scope="row">
-                                        <Avatar src={userList.avatar}/>
+                                        <StyledBadge
+                                            overlap="circle"
+                                            anchorOrigin={{
+                                                vertical: 'bottom',
+                                                horizontal: 'right',
+                                            }}
+                                            variant="dot"
+                                            classes={{badge: userList.status ? classes.customBadgeSuccess : classes.customBadgeError}}>
+                                            <Avatar src={userList.avatar}/>
+                                        </StyledBadge>
                                     </TableCell>
                                     <TableCell component="th" scope="row">
                                         {userList.firstName}

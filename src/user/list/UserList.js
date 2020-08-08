@@ -86,8 +86,8 @@ class UserList extends Component {
                             </TableRow>
                         </TableHead>
                         <TableBody>
-                            {userListData && userListData.length > 0 ? userListData.map((userList) =>
-                                <TableRow key={userList.username}>
+                            {userListData && userListData.content.length > 0 ? userListData.content.map((userListContent) =>
+                                <TableRow key={userListContent.username}>
                                     <TableCell component="th" scope="row">
                                         <StyledBadge
                                             overlap="circle"
@@ -96,33 +96,33 @@ class UserList extends Component {
                                                 horizontal: 'right',
                                             }}
                                             variant="dot"
-                                            classes={{badge: userList.status ? classes.customBadgeSuccess : classes.customBadgeError}}>
-                                            <Avatar src={userList.avatar}/>
+                                            classes={{badge: userListContent.status ? classes.customBadgeSuccess : classes.customBadgeError}}>
+                                            <Avatar src={userListContent.avatar}/>
                                         </StyledBadge>
                                     </TableCell>
                                     <TableCell component="th" scope="row">
-                                        {userList.firstName}
+                                        {userListContent.firstName}
                                     </TableCell>
                                     <TableCell component="th" scope="row">
-                                        {userList.lastName}
+                                        {userListContent.lastName}
                                     </TableCell>
                                     <TableCell component="th" scope="row">
-                                        {userList.username}
+                                        {userListContent.username}
                                     </TableCell>
                                     <TableCell component="th" scope="row">
-                                        {userList.name}
+                                        {userListContent.name}
                                     </TableCell>
                                     <TableCell component="th" scope="row">
-                                        {userList.email}
+                                        {userListContent.email}
                                     </TableCell>
                                     <TableCell component="th" scope="row">
-                                        {userList.age}
+                                        {userListContent.age}
                                     </TableCell>
                                     <TableCell component="th" scope="row">
-                                        {userList.gender}
+                                        {userListContent.gender}
                                     </TableCell>
                                     <TableCell component="th" scope="row">
-                                        {userList.currentCity}
+                                        {userListContent.currentCity}
                                     </TableCell>
                                 </TableRow>
                             ) : <TableRow>
@@ -142,7 +142,6 @@ function mapStateToProps(state) {
     const {userList} = state;
     const {userListData} = userList;
     return {
-        userList,
         userListData
     };
 }

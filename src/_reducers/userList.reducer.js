@@ -16,7 +16,7 @@ export function userList(state = initialState, action) {
             return {
                 userListStatus: true,
                 userListMessage: "Users Fetched Successfully.",
-                userListData: action.userList.content
+                userListData: action.userList
             };
         case userListConstants.USER_LIST_FAILURE:
             return {

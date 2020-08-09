@@ -9,9 +9,10 @@ import Menu from '@material-ui/core/Menu';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import MoreIcon from '@material-ui/icons/MoreVert';
 import {routeConstants} from "../_constants";
-import {makeStyles} from "@material-ui/core/styles";
+import {makeStyles, withStyles} from "@material-ui/core/styles";
 import {green, red} from "@material-ui/core/colors";
 import Badge from "@material-ui/core/Badge";
+import Avatar from "@material-ui/core/Avatar";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -52,10 +53,40 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
+const StyledBadge = withStyles((theme) => ({
+    badge: {
+        backgroundColor: '#44b700',
+        color: '#44b700',
+        boxShadow: `0 0 0 2px ${theme.palette.background.paper}`,
+        '&::after': {
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            width: '100%',
+            height: '100%',
+            borderRadius: '50%',
+            animation: '$ripple 1.2s infinite ease-in-out',
+            border: '1px solid currentColor',
+            content: '""',
+        },
+        margin: 'auto',
+    },
+    '@keyframes ripple': {
+        '0%': {
+            transform: 'scale(.8)',
+            opacity: 1,
+        },
+        '100%': {
+            transform: 'scale(2.4)',
+            opacity: 0,
+        },
+    },
+}))(Badge);
+
 export default function AppBarNavigation({title}) {
     const classes = useStyles();
 
-    const userData = JSON.parse(localStorage.getItem('user'));
+    const userData = JSON.parse(localStorage.getItem('userData'));
 
     const [profileMoreAnchorEl, setProfileMoreAnchorEl] = React.useState(null);
     const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
@@ -121,11 +152,16 @@ export default function AppBarNavigation({title}) {
                     color="inherit"
                 >
                     {userData ?
-                        <Badge
-                            classes={{badge: userData.access_token ? classes.customBadgeSuccess : classes.customBadgeError}}
-                            variant="dot">
-                            <AccountCircle/>
-                        </Badge>
+                        <StyledBadge
+                            overlap="circle"
+                            anchorOrigin={{
+                                vertical: 'bottom',
+                                horizontal: 'right',
+                            }}
+                            variant="dot"
+                            classes={{badge: userData.status ? classes.customBadgeSuccess : classes.customBadgeError}}>
+                            <Avatar src={userData.avatar}/>
+                        </StyledBadge>
                         :
                         <AccountCircle/>
                     }
@@ -157,11 +193,16 @@ export default function AppBarNavigation({title}) {
                             color="inherit"
                         >
                             {userData ?
-                                <Badge
-                                    classes={{badge: userData.access_token ? classes.customBadgeSuccess : classes.customBadgeError}}
-                                    variant="dot">
-                                    <AccountCircle/>
-                                </Badge>
+                                <StyledBadge
+                                    overlap="circle"
+                                    anchorOrigin={{
+                                        vertical: 'bottom',
+                                        horizontal: 'right',
+                                    }}
+                                    variant="dot"
+                                    classes={{badge: userData.status ? classes.customBadgeSuccess : classes.customBadgeError}}>
+                                    <Avatar src={userData.avatar}/>
+                                </StyledBadge>
                                 :
                                 <AccountCircle/>
                             }

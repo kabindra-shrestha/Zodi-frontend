@@ -172,7 +172,8 @@ function Copyright() {
 }
 
 function mapStateToProps(state) {
-    const {loggingIn} = state.login;
+    const {login} = state;
+    const {loggingIn} = login;
     return {
         loggingIn
     };

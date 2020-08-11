@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 
 import {userListActions} from '../../_actions';
-import {Paper, withStyles} from "@material-ui/core";
+import {CircularProgress, Paper, withStyles} from "@material-ui/core";
 import {withRouter} from "react-router-dom";
 import TableContainer from "@material-ui/core/TableContainer";
 import Table from "@material-ui/core/Table";
@@ -26,6 +26,11 @@ const useStyles = theme => ({
     }, customBadgeError: {
         backgroundColor: red.A400,
         color: "white"
+    },
+    spinner: {
+        display: 'block',
+        marginLeft: 'auto',
+        marginRight: 'auto'
     },
 });
 
@@ -66,7 +71,9 @@ class UserList extends Component {
 
     render() {
         const {classes} = this.props;
-        const {userListData} = this.props;
+        const {userList, userListData} = this.props;
+
+        let column = 9;
 
         return (
             <div className={classes.root}>
@@ -87,49 +94,57 @@ class UserList extends Component {
                         </TableHead>
                         <TableBody>
                             {userListData && userListData.content.length > 0 ? userListData.content.map((userListContent) =>
-                                <TableRow key={userListContent.username}>
-                                    <TableCell component="th" scope="row">
-                                        <StyledBadge
-                                            overlap="circle"
-                                            anchorOrigin={{
-                                                vertical: 'bottom',
-                                                horizontal: 'right',
-                                            }}
-                                            variant="dot"
-                                            classes={{badge: userListContent.status ? classes.customBadgeSuccess : classes.customBadgeError}}>
-                                            <Avatar src={userListContent.avatar}/>
-                                        </StyledBadge>
-                                    </TableCell>
-                                    <TableCell component="th" scope="row">
-                                        {userListContent.firstName}
-                                    </TableCell>
-                                    <TableCell component="th" scope="row">
-                                        {userListContent.lastName}
-                                    </TableCell>
-                                    <TableCell component="th" scope="row">
-                                        {userListContent.username}
-                                    </TableCell>
-                                    <TableCell component="th" scope="row">
-                                        {userListContent.name}
-                                    </TableCell>
-                                    <TableCell component="th" scope="row">
-                                        {userListContent.email}
-                                    </TableCell>
-                                    <TableCell component="th" scope="row">
-                                        {userListContent.age}
-                                    </TableCell>
-                                    <TableCell component="th" scope="row">
-                                        {userListContent.gender}
-                                    </TableCell>
-                                    <TableCell component="th" scope="row">
-                                        {userListContent.currentCity}
-                                    </TableCell>
-                                </TableRow>
-                            ) : <TableRow>
-                                <TableCell colSpan={9} align="center">
-                                    No Users Available
-                                </TableCell>
-                            </TableRow>}
+                                    <TableRow key={userListContent.username}>
+                                        <TableCell component="th" scope="row">
+                                            <StyledBadge
+                                                overlap="circle"
+                                                anchorOrigin={{
+                                                    vertical: 'bottom',
+                                                    horizontal: 'right',
+                                                }}
+                                                variant="dot"
+                                                classes={{badge: userListContent.status ? classes.customBadgeSuccess : classes.customBadgeError}}>
+                                                <Avatar src={userListContent.avatar}/>
+                                            </StyledBadge>
+                                        </TableCell>
+                                        <TableCell component="th" scope="row">
+                                            {userListContent.firstName}
+                                        </TableCell>
+                                        <TableCell component="th" scope="row">
+                                            {userListContent.lastName}
+                                        </TableCell>
+                                        <TableCell component="th" scope="row">
+                                            {userListContent.username}
+                                        </TableCell>
+                                        <TableCell component="th" scope="row">
+                                            {userListContent.name}
+                                        </TableCell>
+                                        <TableCell component="th" scope="row">
+                                            {userListContent.email}
+                                        </TableCell>
+                                        <TableCell component="th" scope="row">
+                                            {userListContent.age}
+                                        </TableCell>
+                                        <TableCell component="th" scope="row">
+                                            {userListContent.gender}
+                                        </TableCell>
+                                        <TableCell component="th" scope="row">
+                                            {userListContent.currentCity}
+                                        </TableCell>
+                                    </TableRow>
+                                ) :
+                                userList.fetching ?
+                                    <TableRow>
+                                        <TableCell colSpan={column} align="center">
+                                            <CircularProgress className={classes.spinner}/>
+                                        </TableCell>
+                                    </TableRow> :
+                                    <TableRow>
+                                        <TableCell colSpan={column} align="center">
+                                            No Users Available
+                                        </TableCell>
+                                    </TableRow>
+                            }
                         </TableBody>
                     </Table>
                 </TableContainer>
@@ -142,6 +157,7 @@ function mapStateToProps(state) {
     const {userList} = state;
     const {userListData} = userList;
     return {
+        userList,
         userListData
     };
 }

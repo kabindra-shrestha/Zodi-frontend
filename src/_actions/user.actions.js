@@ -1,18 +1,27 @@
-import {userConstants} from '../_constants';
+import {routeConstants, userConstants} from '../_constants';
 import {userService} from '../_services';
+import {history} from "../_helpers";
+import {alertActions} from "./alert.actions";
 
 export const userActions = {
-    getAll
+    getUser,
+    logout
 };
 
-function getAll() {
+function getUser() {
     return dispatch => {
         dispatch(request());
 
-        userService.getAll()
+        userService.getUser()
             .then(
-                users => dispatch(success(users)),
-                error => dispatch(failure(error))
+                users => {
+                    dispatch(success(users));
+                    history.push(routeConstants.DASHBOARD_URL);
+                },
+                error => {
+                    dispatch(failure(error));
+                    dispatch(alertActions.error(error));
+                }
             );
     };
 
@@ -27,4 +36,9 @@ function getAll() {
     function failure(error) {
         return {type: userConstants.GETALL_FAILURE, error}
     }
+}
+
+function logout() {
+    userConstants.logout();
+    return {type: userConstants.LOGOUT};
 }

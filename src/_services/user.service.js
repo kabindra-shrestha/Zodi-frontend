@@ -2,10 +2,10 @@ import {authHeader} from '../_helpers';
 import {apisConstants} from "../_constants";
 
 export const userService = {
-    getAll
+    getUser
 };
 
-function getAll() {
+function getUser() {
     const requestOptions = {
         method: 'GET',
         headers: authHeader()

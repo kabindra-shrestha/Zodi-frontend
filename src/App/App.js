@@ -117,12 +117,13 @@ class App extends Component {
 }
 
 function mapStateToProps(state) {
-    const {alert, login} = state;
-    const {loggedIn, user} = login;
+    const {alert, login, users} = state;
+    const {user} = login;
+    const {loggedIn} = users;
     return {
         alert,
-        loggedIn,
-        user
+        user,
+        loggedIn
     };
 }
 

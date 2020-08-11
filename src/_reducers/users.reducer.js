@@ -1,6 +1,9 @@
 import {userConstants} from '../_constants';
 
+let userData = JSON.parse(localStorage.getItem('userData'));
+
 const initialState = {
+    loggedIn: !!userData,
     loading: false,
     error: '',
     usersStatus: false,
@@ -12,10 +15,11 @@ export function users(state = initialState, action) {
     switch (action.type) {
         case userConstants.GETALL_REQUEST:
             return {
-                loading: true
+                loggingIn: true
             };
         case userConstants.GETALL_SUCCESS:
             return {
+                loggedIn: true,
                 usersStatus: true,
                 usersMessage: "User Fetched Successfully.",
                 usersData: action.users
@@ -24,6 +28,8 @@ export function users(state = initialState, action) {
             return {
                 error: action.error
             };
+        case userConstants.LOGOUT:
+            return {};
         default:
             return state
     }

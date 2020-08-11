@@ -1,7 +1,6 @@
-import {loginConstants, routeConstants} from '../_constants';
+import {loginConstants} from '../_constants';
 import {loginService} from '../_services';
-import {alertActions} from './';
-import {history} from '../_helpers';
+import {alertActions, userActions} from './';
 
 export const loginActions = {
     login,
@@ -16,7 +15,7 @@ function login(username, password) {
             .then(
                 user => {
                     dispatch(success(user));
-                    history.push(routeConstants.DASHBOARD_URL);
+                    dispatch(userActions.getUser())
                 },
                 error => {
                     dispatch(failure(error));

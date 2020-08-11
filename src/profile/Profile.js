@@ -5,7 +5,6 @@ import {withRouter} from "react-router-dom";
 import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
 import Card from "@material-ui/core/Card/Card";
-import {userActions} from "../_actions";
 import Grid from "@material-ui/core/Grid";
 import Avatar from "@material-ui/core/Avatar";
 import Badge from "@material-ui/core/Badge";
@@ -133,13 +132,10 @@ const StyledBadge = withStyles((theme) => ({
 }))(Badge);
 
 class Profile extends Component {
-    componentDidMount() {
-        this.props.dispatch(userActions.getAll());
-    }
 
     render() {
         const {classes} = this.props;
-        const {usersData} = this.props;
+        const usersData = JSON.parse(localStorage.getItem('userData'));
 
         return (<div className={classes.root}>
             <Grid
@@ -516,10 +512,9 @@ class Profile extends Component {
 }
 
 function mapStateToProps(state) {
-    const {users} = state;
-    const {usersData} = users;
+    const {alert} = state;
     return {
-        usersData
+        alert
     };
 }
 

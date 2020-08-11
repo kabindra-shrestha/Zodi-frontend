@@ -3,7 +3,6 @@ import {loginConstants} from '../_constants';
 let user = JSON.parse(localStorage.getItem('user'));
 
 const initialState = {
-    loggedIn: !!user,
     loginStatus: false,
     loginMessage: '',
     user: user ? user : {}
@@ -18,7 +17,7 @@ export function login(state = initialState, action) {
             };
         case loginConstants.LOGIN_SUCCESS:
             return {
-                loggedIn: true,
+                loggingIn: true,
                 loginStatus: true,
                 loginMessage: "Logging Successful.",
                 user: action.user

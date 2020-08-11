@@ -6,7 +6,6 @@ import IconButton from "@material-ui/core/IconButton";
 import Typography from "@material-ui/core/Typography";
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
-import AccountCircle from '@material-ui/icons/AccountCircle';
 import MoreIcon from '@material-ui/icons/MoreVert';
 import {routeConstants} from "../_constants";
 import {makeStyles, withStyles} from "@material-ui/core/styles";
@@ -86,7 +85,7 @@ const StyledBadge = withStyles((theme) => ({
 export default function AppBarNavigation({title}) {
     const classes = useStyles();
 
-    const userData = JSON.parse(localStorage.getItem('userData'));
+    const usersData = JSON.parse(localStorage.getItem('userData'));
 
     const [profileMoreAnchorEl, setProfileMoreAnchorEl] = React.useState(null);
     const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
@@ -151,20 +150,16 @@ export default function AppBarNavigation({title}) {
                     aria-haspopup="true"
                     color="inherit"
                 >
-                    {userData ?
-                        <StyledBadge
-                            overlap="circle"
-                            anchorOrigin={{
-                                vertical: 'bottom',
-                                horizontal: 'right',
-                            }}
-                            variant="dot"
-                            classes={{badge: userData.status ? classes.customBadgeSuccess : classes.customBadgeError}}>
-                            <Avatar src={userData.avatar}/>
-                        </StyledBadge>
-                        :
-                        <AccountCircle/>
-                    }
+                    <StyledBadge
+                        overlap="circle"
+                        anchorOrigin={{
+                            vertical: 'bottom',
+                            horizontal: 'right',
+                        }}
+                        variant="dot"
+                        classes={{badge: usersData.status ? classes.customBadgeSuccess : classes.customBadgeError}}>
+                        <Avatar src={usersData.avatar}/>
+                    </StyledBadge>
                 </IconButton>
                 <p>Profile</p>
             </MenuItem>
@@ -192,20 +187,16 @@ export default function AppBarNavigation({title}) {
                             onClick={handleProfileMenuOpen}
                             color="inherit"
                         >
-                            {userData ?
-                                <StyledBadge
-                                    overlap="circle"
-                                    anchorOrigin={{
-                                        vertical: 'bottom',
-                                        horizontal: 'right',
-                                    }}
-                                    variant="dot"
-                                    classes={{badge: userData.status ? classes.customBadgeSuccess : classes.customBadgeError}}>
-                                    <Avatar src={userData.avatar}/>
-                                </StyledBadge>
-                                :
-                                <AccountCircle/>
-                            }
+                            <StyledBadge
+                                overlap="circle"
+                                anchorOrigin={{
+                                    vertical: 'bottom',
+                                    horizontal: 'right',
+                                }}
+                                variant="dot"
+                                classes={{badge: usersData.status ? classes.customBadgeSuccess : classes.customBadgeError}}>
+                                <Avatar src={usersData.avatar}/>
+                            </StyledBadge>
                         </IconButton>
                     </div>
                     <div className={classes.sectionMobile}>

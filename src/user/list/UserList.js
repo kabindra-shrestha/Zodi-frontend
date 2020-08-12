@@ -76,24 +76,18 @@ class UserList extends Component {
         this.handleChangePage = this.handleChangePage.bind(this);
     }
 
-    /*componentDidUpdate(prevProps, prevState, snapshot) {
-        (this.props.userListData && this.props.userListData.content.length > 0) && this.updateState(this.props.userListData);
-    }*/
-
     handleChangePage = (event, newPage) => {
         this.props.dispatch(userListActions.userList(newPage));
     };
 
-    /*updateState(userListData) {
-        this.setState({count: (userListData && userListData.content.length > 0) && userListData.totalElements});
-        this.setState({rowsPerPage: (userListData && userListData.content.length > 0) && userListData.numberOfElements});
-        this.setState({page: (userListData && userListData.content.length > 0) && userListData.number});
-    };*/
-
     render() {
         const {classes} = this.props;
         const {userList, userListData} = this.props;
+
         const column = 9;
+        const count = (userListData && userListData.content.length > 0) && userListData.totalElements;
+        const rowsPerPage = (userListData && userListData.content.length > 0) && userListData.size;
+        const page = (userListData && userListData.content.length > 0) && userListData.number;
 
         return (
             <div className={classes.root}>
@@ -170,11 +164,11 @@ class UserList extends Component {
                         <TableFooter>
                             <TableRow>
                                 <TablePagination
-                                    rowsPerPageOptions={[userListData.totalElements]}
+                                    rowsPerPageOptions={[count]}
                                     colSpan={column}
-                                    count={userListData.totalElements}
-                                    rowsPerPage={userListData.size}
-                                    page={userListData.number}
+                                    count={count}
+                                    rowsPerPage={rowsPerPage}
+                                    page={page}
                                     SelectProps={{
                                         inputProps: {'aria-label': 'rows per page'},
                                         native: true,

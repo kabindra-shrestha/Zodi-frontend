@@ -13,6 +13,8 @@ import TableBody from "@material-ui/core/TableBody";
 import Avatar from "@material-ui/core/Avatar";
 import Badge from "@material-ui/core/Badge";
 import {green, red} from "@material-ui/core/colors";
+import TableFooter from "@material-ui/core/TableFooter";
+import TablePagination from "@material-ui/core/TablePagination";
 
 const useStyles = theme => ({
     root: {
@@ -65,15 +67,37 @@ const StyledBadge = withStyles((theme) => ({
 }))(Badge);
 
 class UserList extends Component {
-    componentDidMount() {
-        this.props.dispatch(userListActions.userList(0));
+
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            column: 9,
+            count: 51,
+            rowsPerPage: 20,
+            page: 0
+        };
+
+        props.dispatch(userListActions.userList(this.state.page));
+
+        this.handleChangePage = this.handleChangePage.bind(this);
     }
+
+    handleChangePage = (event, newPage) => {
+        this.setState({page: newPage});
+
+        this.props.dispatch(userListActions.userList(newPage));
+    };
+
+    updateState(userListData) {
+        this.setState({count: (userListData && userListData.content.length > 0) && userListData.totalElements});
+        this.setState({rowsPerPage: (userListData && userListData.content.length > 0) && userListData.numberOfElements});
+        this.setState({page: (userListData && userListData.content.length > 0) && userListData.number});
+    };
 
     render() {
         const {classes} = this.props;
         const {userList, userListData} = this.props;
-
-        let column = 9;
 
         return (
             <div className={classes.root}>
@@ -135,17 +159,35 @@ class UserList extends Component {
                                 ) :
                                 userList.fetching ?
                                     <TableRow>
-                                        <TableCell colSpan={column} align="center">
+                                        <TableCell colSpan={this.state.column} align="center">
                                             <CircularProgress className={classes.spinner}/>
                                         </TableCell>
                                     </TableRow> :
                                     <TableRow>
-                                        <TableCell colSpan={column} align="center">
+                                        <TableCell colSpan={this.state.column} align="center">
                                             No Users Available
                                         </TableCell>
                                     </TableRow>
                             }
                         </TableBody>
+                        {(userListData && userListData.content.length > 0) &&
+                        <TableFooter>
+                            <TableRow>
+                                <TablePagination
+                                    rowsPerPageOptions={[this.state.count]}
+                                    colSpan={this.state.column}
+                                    count={this.state.count}
+                                    rowsPerPage={this.state.rowsPerPage}
+                                    page={this.state.page}
+                                    SelectProps={{
+                                        inputProps: {'aria-label': 'rows per page'},
+                                        native: true,
+                                    }}
+                                    onChangePage={this.handleChangePage}
+                                />
+                            </TableRow>
+                        </TableFooter>
+                        }
                     </Table>
                 </TableContainer>
             </div>

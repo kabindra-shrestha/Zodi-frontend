@@ -71,33 +71,29 @@ class UserList extends Component {
     constructor(props) {
         super(props);
 
-        this.state = {
-            column: 9,
-            count: 51,
-            rowsPerPage: 20,
-            page: 0
-        };
-
-        props.dispatch(userListActions.userList(this.state.page));
+        props.dispatch(userListActions.userList(0));
 
         this.handleChangePage = this.handleChangePage.bind(this);
     }
 
-    handleChangePage = (event, newPage) => {
-        this.setState({page: newPage});
+    /*componentDidUpdate(prevProps, prevState, snapshot) {
+        (this.props.userListData && this.props.userListData.content.length > 0) && this.updateState(this.props.userListData);
+    }*/
 
+    handleChangePage = (event, newPage) => {
         this.props.dispatch(userListActions.userList(newPage));
     };
 
-    updateState(userListData) {
+    /*updateState(userListData) {
         this.setState({count: (userListData && userListData.content.length > 0) && userListData.totalElements});
         this.setState({rowsPerPage: (userListData && userListData.content.length > 0) && userListData.numberOfElements});
         this.setState({page: (userListData && userListData.content.length > 0) && userListData.number});
-    };
+    };*/
 
     render() {
         const {classes} = this.props;
         const {userList, userListData} = this.props;
+        const column = 9;
 
         return (
             <div className={classes.root}>
@@ -159,12 +155,12 @@ class UserList extends Component {
                                 ) :
                                 userList.fetching ?
                                     <TableRow>
-                                        <TableCell colSpan={this.state.column} align="center">
+                                        <TableCell colSpan={column} align="center">
                                             <CircularProgress className={classes.spinner}/>
                                         </TableCell>
                                     </TableRow> :
                                     <TableRow>
-                                        <TableCell colSpan={this.state.column} align="center">
+                                        <TableCell colSpan={column} align="center">
                                             No Users Available
                                         </TableCell>
                                     </TableRow>
@@ -174,11 +170,11 @@ class UserList extends Component {
                         <TableFooter>
                             <TableRow>
                                 <TablePagination
-                                    rowsPerPageOptions={[this.state.count]}
-                                    colSpan={this.state.column}
-                                    count={this.state.count}
-                                    rowsPerPage={this.state.rowsPerPage}
-                                    page={this.state.page}
+                                    rowsPerPageOptions={[userListData.totalElements]}
+                                    colSpan={column}
+                                    count={userListData.totalElements}
+                                    rowsPerPage={userListData.size}
+                                    page={userListData.number}
                                     SelectProps={{
                                         inputProps: {'aria-label': 'rows per page'},
                                         native: true,

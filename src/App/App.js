@@ -52,9 +52,16 @@ function setTitle(history) {
     if (history.location.pathname === routeConstants.USER_LIST_URL) {
         TITLE = routeConstants.USER + " " + routeConstants.USER_LIST;
     }
-    if (history.location.pathname === routeConstants.USER_DETAIL_URL) {
+    /*console.error(history.location.pathname.match);
+    console.error(routeConstants.USER_DETAIL_URL + routeConstants.USER_DETAIL_URL_PARAMS);
+    console.error(matchPath(history.location.pathname.match, {
+        path: routeConstants.USER_DETAIL_URL + routeConstants.USER_DETAIL_URL_PARAMS,
+        exact: true,
+        strict: false
+    }));
+    if (matchPath(history.location.pathname.match, routeConstants.USER_DETAIL_URL + +routeConstants.USER_DETAIL_URL_PARAMS)) {
         TITLE = routeConstants.USER + " " + routeConstants.USER_DETAIL;
-    }
+    }*/
 }
 
 class App extends Component {
@@ -104,8 +111,9 @@ class App extends Component {
                                 <PrivateRoute path={routeConstants.PROFILE_URL} exact component={() => <Profile/>}/>
                                 <PrivateRoute path={routeConstants.USER_LIST_URL} exact
                                               component={() => <UserList/>}/>
-                                <PrivateRoute path={routeConstants.USER_DETAIL_URL+"/:userId"} exact
-                                              component={() => <UserDetail/>}/>
+                                <PrivateRoute
+                                    path={routeConstants.USER_DETAIL_URL + routeConstants.USER_DETAIL_URL_PARAMS} exact
+                                    component={() => <UserDetail/>}/>
                                 <PrivateRoute path={routeConstants.QUESTION_CREATE_URL} exact
                                               component={() => <QuestionCreate/>}/>
                                 <Route component={() => <ErrorPageNotFound/>}/>

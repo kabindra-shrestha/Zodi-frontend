@@ -12,6 +12,7 @@ import {green, red} from "@material-ui/core/colors";
 import CardHeader from "@material-ui/core/CardHeader";
 import Divider from "@material-ui/core/Divider";
 import TextField from "@material-ui/core/TextField";
+import {userDetailActions} from "../_actions/userDetail.actions";
 
 const useStyles = theme => ({
     root: {
@@ -133,12 +134,15 @@ const StyledBadge = withStyles((theme) => ({
 
 class UserDetail extends Component {
 
+    constructor(props) {
+        super(props);
+
+        props.dispatch(userDetailActions.userDetail(props.match.params.username));
+    }
+
     render() {
         const {classes} = this.props;
-        const userId = this.props.match.params.userId;
-        console.error(userId);
-
-        const usersData = JSON.parse(localStorage.getItem('userData'));
+        const {userDetailData} = this.props;
 
         return (<div className={classes.root}>
             <Grid
@@ -151,7 +155,7 @@ class UserDetail extends Component {
                     xl={4}
                     xs={12}>
                     <Card className={classes.cardBackground}>
-                        {usersData &&
+                        {userDetailData &&
                         <CardContent className={classes.content}>
                             <div className={classes.avatar}>
                                 <StyledBadge
@@ -161,15 +165,15 @@ class UserDetail extends Component {
                                         horizontal: 'right',
                                     }}
                                     variant="dot"
-                                    classes={{badge: usersData.status ? classes.customBadgeSuccess : classes.customBadgeError}}>
-                                    <Avatar className={classes.avatar} src={usersData.avatar}/>
+                                    classes={{badge: userDetailData.status ? classes.customBadgeSuccess : classes.customBadgeError}}>
+                                    <Avatar className={classes.avatar} src={userDetailData.avatar}/>
                                 </StyledBadge>
                             </div>
                             <Typography className={classes.name} variant="h3" gutterBottom>
-                                {usersData.firstName + " " + usersData.lastName}
+                                {userDetailData.firstName + " " + userDetailData.lastName}
                             </Typography>
                             <Typography className={classes.info} variant="body1" gutterBottom>
-                                {usersData.address + " " + usersData.lastName}
+                                {userDetailData.address + " " + userDetailData.lastName}
                             </Typography>
                         </CardContent>
                         }
@@ -181,7 +185,7 @@ class UserDetail extends Component {
                     md={6}
                     xl={8}
                     xs={12}>
-                    {usersData &&
+                    {userDetailData &&
                     <Card
                         className={classes.cardBackground}>
                         <CardHeader title="User Detail"/>
@@ -200,7 +204,7 @@ class UserDetail extends Component {
                                         margin="dense"
                                         name="firstName"
                                         required
-                                        value={usersData.firstName}
+                                        value={userDetailData.firstName}
                                         variant="outlined"
                                         disabled
                                     />
@@ -215,7 +219,7 @@ class UserDetail extends Component {
                                         margin="dense"
                                         name="lastName"
                                         required
-                                        value={usersData.lastName}
+                                        value={userDetailData.lastName}
                                         variant="outlined"
                                         disabled
                                     />
@@ -230,7 +234,7 @@ class UserDetail extends Component {
                                         margin="dense"
                                         name="name"
                                         required
-                                        value={usersData.name}
+                                        value={userDetailData.name}
                                         variant="outlined"
                                         disabled
                                     />
@@ -245,7 +249,7 @@ class UserDetail extends Component {
                                         margin="dense"
                                         name="username"
                                         required
-                                        value={usersData.username}
+                                        value={userDetailData.username}
                                         variant="outlined"
                                         disabled
                                     />
@@ -260,7 +264,7 @@ class UserDetail extends Component {
                                         margin="dense"
                                         name="email"
                                         required
-                                        value={usersData.email}
+                                        value={userDetailData.email}
                                         variant="outlined"
                                         disabled
                                     />
@@ -274,7 +278,7 @@ class UserDetail extends Component {
                                         label="Age"
                                         margin="dense"
                                         name="age"
-                                        value={usersData.age}
+                                        value={userDetailData.age}
                                         variant="outlined"
                                         disabled
                                     />
@@ -289,7 +293,7 @@ class UserDetail extends Component {
                                         margin="dense"
                                         name="gender"
                                         required
-                                        value={usersData.gender}
+                                        value={userDetailData.gender}
                                         variant="outlined"
                                         disabled
                                     />
@@ -304,7 +308,7 @@ class UserDetail extends Component {
                                         margin="dense"
                                         name="avatar"
                                         required
-                                        value={usersData.avatar}
+                                        value={userDetailData.avatar}
                                         variant="outlined"
                                         disabled
                                     />
@@ -319,7 +323,7 @@ class UserDetail extends Component {
                                         margin="dense"
                                         name="currentCity"
                                         required
-                                        value={usersData.currentCity}
+                                        value={userDetailData.currentCity}
                                         variant="outlined"
                                         disabled
                                     />
@@ -334,7 +338,7 @@ class UserDetail extends Component {
                                         margin="dense"
                                         name="school"
                                         required
-                                        value={usersData.school}
+                                        value={userDetailData.school}
                                         variant="outlined"
                                         disabled
                                     />
@@ -349,7 +353,7 @@ class UserDetail extends Component {
                                         margin="dense"
                                         name="hasLikedYou"
                                         required
-                                        value={usersData.hasLikedYou}
+                                        value={userDetailData.hasLikedYou}
                                         variant="outlined"
                                         disabled
                                     />
@@ -364,7 +368,7 @@ class UserDetail extends Component {
                                         margin="dense"
                                         name="kalonPoints"
                                         required
-                                        value={usersData.kalonPoints}
+                                        value={userDetailData.kalonPoints}
                                         variant="outlined"
                                         disabled
                                     />
@@ -379,7 +383,7 @@ class UserDetail extends Component {
                                         margin="dense"
                                         name="photos"
                                         required
-                                        value={usersData.photos}
+                                        value={userDetailData.photos}
                                         variant="outlined"
                                         disabled
                                     />
@@ -394,7 +398,7 @@ class UserDetail extends Component {
                                         margin="dense"
                                         name="profilePic"
                                         required
-                                        value={usersData.profilePic}
+                                        value={userDetailData.profilePic}
                                         variant="outlined"
                                         disabled
                                     />
@@ -409,7 +413,7 @@ class UserDetail extends Component {
                                         margin="dense"
                                         name="status"
                                         required
-                                        value={usersData.status}
+                                        value={userDetailData.status}
                                         variant="outlined"
                                         disabled
                                     />
@@ -424,7 +428,7 @@ class UserDetail extends Component {
                                         margin="dense"
                                         name="premium"
                                         required
-                                        value={usersData.premium}
+                                        value={userDetailData.premium}
                                         variant="outlined"
                                         disabled
                                     />
@@ -439,7 +443,7 @@ class UserDetail extends Component {
                                         margin="dense"
                                         name="userVerified"
                                         required
-                                        value={usersData.userVerified}
+                                        value={userDetailData.userVerified}
                                         variant="outlined"
                                         disabled
                                     />
@@ -454,7 +458,7 @@ class UserDetail extends Component {
                                         margin="dense"
                                         name="emailVerified"
                                         required
-                                        value={usersData.emailVerified}
+                                        value={userDetailData.emailVerified}
                                         variant="outlined"
                                         disabled
                                     />
@@ -469,7 +473,7 @@ class UserDetail extends Component {
                                         margin="dense"
                                         name="verificationDeadline"
                                         required
-                                        value={usersData.verificationDeadline}
+                                        value={userDetailData.verificationDeadline}
                                         variant="outlined"
                                         disabled
                                     />
@@ -484,7 +488,7 @@ class UserDetail extends Component {
                                         margin="dense"
                                         name="profileUpdated"
                                         required
-                                        value={usersData.profileUpdated}
+                                        value={userDetailData.profileUpdated}
                                         variant="outlined"
                                         disabled
                                     />
@@ -499,7 +503,7 @@ class UserDetail extends Component {
                                         margin="dense"
                                         name="cityId"
                                         required
-                                        value={usersData.cityId}
+                                        value={userDetailData.cityId}
                                         variant="outlined"
                                         disabled
                                     />
@@ -515,9 +519,11 @@ class UserDetail extends Component {
 }
 
 function mapStateToProps(state) {
-    const {alert} = state;
+    const {userDetail} = state;
+    const {userDetailData} = userDetail;
     return {
-        alert
+        userDetail,
+        userDetailData
     };
 }
 

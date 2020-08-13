@@ -4,6 +4,7 @@ import {alert} from './alert.reducer';
 import {login} from './login.reducer';
 import {users} from "./users.reducer";
 import {userList} from "./userList.reducer";
+import {userDetail} from "./userDetail.reducer";
 import {questionCreate} from "./questionCreate.reducer";
 
 const rootReducer = combineReducers({
@@ -11,6 +12,7 @@ const rootReducer = combineReducers({
     login,
     users,
     userList,
+    userDetail,
     questionCreate
 });
 

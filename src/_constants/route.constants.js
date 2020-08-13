@@ -5,6 +5,7 @@ export const routeConstants = {
     PROFILE_URL: '/profile',
     USER_LIST_URL: '/user/list',
     USER_DETAIL_URL: '/user/detail',
+    USER_DETAIL_URL_PARAMS: '/:username',
     QUESTION_CREATE_URL: '/question/create',
 
     SITE: 'Site',

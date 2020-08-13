@@ -4,4 +4,5 @@ export * from './apis.constants';
 export * from './login.constants';
 export * from './user.constants';
 export * from './userList.constants';
+export * from './userDetail.constants';
 export * from './questionCreate.constants';

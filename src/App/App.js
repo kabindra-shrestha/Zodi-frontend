@@ -52,16 +52,12 @@ function setTitle(history) {
     if (history.location.pathname === routeConstants.USER_LIST_URL) {
         TITLE = routeConstants.USER + " " + routeConstants.USER_LIST;
     }
-    /*console.error(history.location.pathname.match);
-    console.error(routeConstants.USER_DETAIL_URL + routeConstants.USER_DETAIL_URL_PARAMS);
-    console.error(matchPath(history.location.pathname.match, {
-        path: routeConstants.USER_DETAIL_URL + routeConstants.USER_DETAIL_URL_PARAMS,
-        exact: true,
-        strict: false
-    }));
-    if (matchPath(history.location.pathname.match, routeConstants.USER_DETAIL_URL + +routeConstants.USER_DETAIL_URL_PARAMS)) {
+    if (history.location.pathname.indexOf(routeConstants.USER_LIST_URL)) {
+        TITLE = routeConstants.USER + " " + routeConstants.USER_LIST;
+    }
+    if (history.location.pathname.indexOf(routeConstants.USER_DETAIL_URL) > -1) {
         TITLE = routeConstants.USER + " " + routeConstants.USER_DETAIL;
-    }*/
+    }
 }
 
 class App extends Component {

@@ -73,6 +73,7 @@ class Dashboard extends Component {
 
     render() {
         const {classes} = this.props;
+
         const usersData = JSON.parse(localStorage.getItem('userData'));
 
         return (<div>

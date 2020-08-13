@@ -135,6 +135,7 @@ class Profile extends Component {
 
     render() {
         const {classes} = this.props;
+
         const usersData = JSON.parse(localStorage.getItem('userData'));
 
         return (<div className={classes.root}>

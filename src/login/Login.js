@@ -15,6 +15,7 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import {loginActions} from "../_actions";
 import {connect} from "react-redux";
 import {withRouter} from "react-router-dom";
+import {routeConstants} from "../_constants";
 
 const useStyles = theme => ({
     paper: {
@@ -162,7 +163,7 @@ function Copyright() {
     return (
         <Typography variant="body2" color="textSecondary" align="center">
             {'Copyright © '}
-            <Link color="inherit" href="https://material-ui.com/">
+            <Link color="inherit" href={routeConstants.SITE_URL}>
                 Kalon
             </Link>{' '}
             {new Date().getFullYear()}

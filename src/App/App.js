@@ -8,6 +8,7 @@ import {Dashboard} from "../dashboard/Dashboard";
 import {UserList} from "../user/list/UserList";
 import {QuestionCreate} from "../question/create/QuestionCreate";
 import {Profile} from "../profile/Profile";
+import {UserDetail} from "../userDetail/UserDetail";
 import {PrivateRoute} from "../_components";
 import Welcome from "../main/Welcome";
 import ErrorPageNotFound from "../error/ErrorPageNotFound";
@@ -39,9 +40,6 @@ function setTitle(history) {
     if (history.location.pathname === routeConstants.LOGIN_URL) {
         TITLE = routeConstants.LOGIN;
     }
-    if (history.location.pathname === routeConstants.HOME_URL) {
-        TITLE = routeConstants.HOME;
-    }
     if (history.location.pathname === routeConstants.DASHBOARD_URL) {
         TITLE = routeConstants.DASHBOARD;
     }
@@ -53,6 +51,9 @@ function setTitle(history) {
     }
     if (history.location.pathname === routeConstants.USER_LIST_URL) {
         TITLE = routeConstants.USER + " " + routeConstants.USER_LIST;
+    }
+    if (history.location.pathname === routeConstants.USER_DETAIL_URL) {
+        TITLE = routeConstants.USER + " " + routeConstants.USER_DETAIL;
     }
 }
 
@@ -99,11 +100,12 @@ class App extends Component {
                                 <Route path={routeConstants.SITE_URL} exact
                                        component={() => <Welcome heading={heading} quote={quote} footer={footer}/>}/>
                                 <Route path={routeConstants.LOGIN_URL} exact component={Login}/>
-                                <PrivateRoute path={routeConstants.HOME_URL} exact component={() => <Dashboard/>}/>
                                 <PrivateRoute path={routeConstants.DASHBOARD_URL} exact component={() => <Dashboard/>}/>
                                 <PrivateRoute path={routeConstants.PROFILE_URL} exact component={() => <Profile/>}/>
                                 <PrivateRoute path={routeConstants.USER_LIST_URL} exact
                                               component={() => <UserList/>}/>
+                                <PrivateRoute path={routeConstants.USER_DETAIL_URL+"/:userId"} exact
+                                              component={() => <UserDetail/>}/>
                                 <PrivateRoute path={routeConstants.QUESTION_CREATE_URL} exact
                                               component={() => <QuestionCreate/>}/>
                                 <Route component={() => <ErrorPageNotFound/>}/>

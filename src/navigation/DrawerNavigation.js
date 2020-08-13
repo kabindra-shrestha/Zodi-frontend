@@ -64,11 +64,6 @@ export default function DrawerNavigation() {
                 </List>
                 <Divider/>
                 <List>
-                    <ListItem button key={routeConstants.HOME} component={Link}
-                              to={routeConstants.HOME_URL}>
-                        <ListItemIcon><HomeIcon/></ListItemIcon>
-                        <ListItemText primary={routeConstants.HOME}/>
-                    </ListItem>
                     <ListItem button key={routeConstants.DASHBOARD} component={Link}
                               to={routeConstants.DASHBOARD_URL}>
                         <ListItemIcon><HomeIcon/></ListItemIcon>

@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 
 import {userListActions} from '../../_actions';
 import {CircularProgress, Paper, withStyles} from "@material-ui/core";
-import {withRouter} from "react-router-dom";
+import {Link, withRouter} from "react-router-dom";
 import TableContainer from "@material-ui/core/TableContainer";
 import Table from "@material-ui/core/Table";
 import TableHead from "@material-ui/core/TableHead";
@@ -15,6 +15,7 @@ import Badge from "@material-ui/core/Badge";
 import {green, red} from "@material-ui/core/colors";
 import TableFooter from "@material-ui/core/TableFooter";
 import TablePagination from "@material-ui/core/TablePagination";
+import {routeConstants} from "../../_constants";
 
 const useStyles = theme => ({
     root: {
@@ -118,7 +119,8 @@ class UserList extends Component {
                                                 }}
                                                 variant="dot"
                                                 classes={{badge: userListContent.status ? classes.customBadgeSuccess : classes.customBadgeError}}>
-                                                <Avatar src={userListContent.avatar}/>
+                                                <Avatar src={userListContent.avatar} component={Link}
+                                                        to={routeConstants.USER_DETAIL_URL + "/" + userListContent.username}/>
                                             </StyledBadge>
                                         </TableCell>
                                         <TableCell component="th" scope="row">

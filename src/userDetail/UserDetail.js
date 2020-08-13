@@ -206,8 +206,7 @@ class UserDetail extends Component {
                                         required
                                         value={userDetailData.firstName}
                                         variant="outlined"
-                                        disabled
-                                    />
+                                        disabled/>
                                 </Grid>
                                 <Grid
                                     item
@@ -221,8 +220,7 @@ class UserDetail extends Component {
                                         required
                                         value={userDetailData.lastName}
                                         variant="outlined"
-                                        disabled
-                                    />
+                                        disabled/>
                                 </Grid>
                                 <Grid
                                     item
@@ -236,8 +234,7 @@ class UserDetail extends Component {
                                         required
                                         value={userDetailData.name}
                                         variant="outlined"
-                                        disabled
-                                    />
+                                        disabled/>
                                 </Grid>
                                 <Grid
                                     item
@@ -251,8 +248,7 @@ class UserDetail extends Component {
                                         required
                                         value={userDetailData.username}
                                         variant="outlined"
-                                        disabled
-                                    />
+                                        disabled/>
                                 </Grid>
                                 <Grid
                                     item
@@ -266,8 +262,7 @@ class UserDetail extends Component {
                                         required
                                         value={userDetailData.email}
                                         variant="outlined"
-                                        disabled
-                                    />
+                                        disabled/>
                                 </Grid>
                                 <Grid
                                     item

@@ -16,6 +16,7 @@ import {green, red} from "@material-ui/core/colors";
 import TableFooter from "@material-ui/core/TableFooter";
 import TablePagination from "@material-ui/core/TablePagination";
 import {routeConstants} from "../../_constants";
+import IconButton from "@material-ui/core/IconButton";
 
 const useStyles = theme => ({
     root: {
@@ -111,17 +112,23 @@ class UserList extends Component {
                             {userListData && userListData.content.length > 0 ? userListData.content.map((userListContent) =>
                                     <TableRow key={userListContent.username}>
                                         <TableCell component="th" scope="row">
-                                            <StyledBadge
-                                                overlap="circle"
-                                                anchorOrigin={{
-                                                    vertical: 'bottom',
-                                                    horizontal: 'right',
-                                                }}
-                                                variant="dot"
-                                                classes={{badge: userListContent.status ? classes.customBadgeSuccess : classes.customBadgeError}}>
-                                                <Avatar src={userListContent.avatar} component={Link}
-                                                        to={routeConstants.USER_DETAIL_URL + "/" + userListContent.username}/>
-                                            </StyledBadge>
+                                            <IconButton
+                                                edge="end"
+                                                aria-label="avatar"
+                                                color="inherit"
+                                                component={Link}
+                                                to={routeConstants.USER_DETAIL_URL + "/" + userListContent.username}>
+                                                <StyledBadge
+                                                    overlap="circle"
+                                                    anchorOrigin={{
+                                                        vertical: 'bottom',
+                                                        horizontal: 'right',
+                                                    }}
+                                                    variant="dot"
+                                                    classes={{badge: userListContent.status ? classes.customBadgeSuccess : classes.customBadgeError}}>
+                                                    <Avatar src={userListContent.avatar}/>
+                                                </StyledBadge>
+                                            </IconButton>
                                         </TableCell>
                                         <TableCell component="th" scope="row">
                                             {userListContent.firstName}

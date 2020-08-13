@@ -123,8 +123,7 @@ export default function AppBarNavigation({title}) {
             keepMounted
             transformOrigin={{vertical: 'top', horizontal: 'right'}}
             open={isMenuOpen}
-            onClose={handleProfileMenuClose}
-        >
+            onClose={handleProfileMenuClose}>
             <MenuItem onClick={handleProfileMenuClose} component={Link}
                       to={routeConstants.PROFILE_URL}>Profile</MenuItem>
             <MenuItem onClick={handleProfileMenuClose} component={Link}
@@ -141,15 +140,13 @@ export default function AppBarNavigation({title}) {
             keepMounted
             transformOrigin={{vertical: 'top', horizontal: 'right'}}
             open={isMobileMenuOpen}
-            onClose={handleMobileMenuClose}
-        >
+            onClose={handleMobileMenuClose}>
             <MenuItem onClick={handleProfileMenuOpen}>
                 <IconButton
                     aria-label="account of current user"
                     aria-controls="primary-search-account-menu"
                     aria-haspopup="true"
-                    color="inherit"
-                >
+                    color="inherit">
                     <StyledBadge
                         overlap="circle"
                         anchorOrigin={{
@@ -185,8 +182,7 @@ export default function AppBarNavigation({title}) {
                             aria-controls={menuId}
                             aria-haspopup="true"
                             onClick={handleProfileMenuOpen}
-                            color="inherit"
-                        >
+                            color="inherit">
                             <StyledBadge
                                 overlap="circle"
                                 anchorOrigin={{
@@ -205,8 +201,7 @@ export default function AppBarNavigation({title}) {
                             aria-controls={mobileMenuId}
                             aria-haspopup="true"
                             onClick={handleMobileMenuOpen}
-                            color="inherit"
-                        >
+                            color="inherit">
                             <MoreIcon/>
                         </IconButton>
                     </div>

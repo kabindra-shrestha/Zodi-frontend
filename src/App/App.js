@@ -52,9 +52,6 @@ function setTitle(history) {
     if (history.location.pathname === routeConstants.USER_LIST_URL) {
         TITLE = routeConstants.USER + " " + routeConstants.USER_LIST;
     }
-    if (history.location.pathname.indexOf(routeConstants.USER_LIST_URL)) {
-        TITLE = routeConstants.USER + " " + routeConstants.USER_LIST;
-    }
     if (history.location.pathname.includes(routeConstants.USER_DETAIL_URL)) {
         TITLE = routeConstants.USER + " " + routeConstants.USER_DETAIL;
     }

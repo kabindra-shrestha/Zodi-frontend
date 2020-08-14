@@ -96,21 +96,21 @@ class UserList extends Component {
                     <Table className={classes.table} aria-label="simple table">
                         <TableHead>
                             <TableRow>
-                                <TableCell>Avatar</TableCell>
-                                <TableCell>First Name</TableCell>
-                                <TableCell>Last Name</TableCell>
-                                <TableCell>User Name</TableCell>
-                                <TableCell>Name</TableCell>
-                                <TableCell>Email</TableCell>
-                                <TableCell>Age</TableCell>
-                                <TableCell>Gender</TableCell>
-                                <TableCell>Current City</TableCell>
+                                <TableCell align="center">Avatar</TableCell>
+                                <TableCell align="center">First Name</TableCell>
+                                <TableCell align="center">Last Name</TableCell>
+                                <TableCell align="center">User Name</TableCell>
+                                <TableCell align="center">Name</TableCell>
+                                <TableCell align="center">Email</TableCell>
+                                <TableCell align="center">Age</TableCell>
+                                <TableCell align="center">Gender</TableCell>
+                                <TableCell align="center">Current City</TableCell>
                             </TableRow>
                         </TableHead>
                         <TableBody>
                             {userListData && userListData.content.length > 0 ? userListData.content.map((userListContent) =>
                                     <TableRow key={userListContent.username}>
-                                        <TableCell component="th" scope="row">
+                                        <TableCell component="th" scope="row" align="center">
                                             <IconButton
                                                 edge="end"
                                                 aria-label="avatar"
@@ -129,28 +129,28 @@ class UserList extends Component {
                                                 </StyledBadge>
                                             </IconButton>
                                         </TableCell>
-                                        <TableCell component="th" scope="row">
+                                        <TableCell component="th" scope="row" align="center">
                                             {userListContent.firstName}
                                         </TableCell>
-                                        <TableCell component="th" scope="row">
+                                        <TableCell component="th" scope="row" align="center">
                                             {userListContent.lastName}
                                         </TableCell>
-                                        <TableCell component="th" scope="row">
+                                        <TableCell component="th" scope="row" align="center">
                                             {userListContent.username}
                                         </TableCell>
-                                        <TableCell component="th" scope="row">
+                                        <TableCell component="th" scope="row" align="center">
                                             {userListContent.name}
                                         </TableCell>
-                                        <TableCell component="th" scope="row">
+                                        <TableCell component="th" scope="row" align="center">
                                             {userListContent.email}
                                         </TableCell>
-                                        <TableCell component="th" scope="row">
+                                        <TableCell component="th" scope="row" align="center">
                                             {userListContent.age}
                                         </TableCell>
-                                        <TableCell component="th" scope="row">
+                                        <TableCell component="th" scope="row" align="center">
                                             {userListContent.gender}
                                         </TableCell>
-                                        <TableCell component="th" scope="row">
+                                        <TableCell component="th" scope="row" align="center">
                                             {userListContent.currentCity}
                                         </TableCell>
                                     </TableRow>

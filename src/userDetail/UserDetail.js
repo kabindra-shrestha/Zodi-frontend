@@ -87,10 +87,11 @@ const useStyles = theme => ({
     },
     customBadgeSuccess: {
         backgroundColor: green.A400,
-        color: "white"
-    }, customBadgeError: {
+        color: green.A400
+    },
+    customBadgeError: {
         backgroundColor: red.A400,
-        color: "white"
+        color: red.A400
     },
     name: {
         textAlign: 'center',
@@ -104,8 +105,6 @@ const useStyles = theme => ({
 
 const StyledBadge = withStyles((theme) => ({
     badge: {
-        backgroundColor: '#44b700',
-        color: '#44b700',
         boxShadow: `0 0 0 2px ${theme.palette.background.paper}`,
         '&::after': {
             position: 'absolute',

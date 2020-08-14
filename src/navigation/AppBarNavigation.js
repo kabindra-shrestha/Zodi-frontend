@@ -45,17 +45,16 @@ const useStyles = makeStyles((theme) => ({
     },
     customBadgeSuccess: {
         backgroundColor: green.A400,
-        color: "white"
-    }, customBadgeError: {
+        color: green.A400
+    },
+    customBadgeError: {
         backgroundColor: red.A400,
-        color: "white"
+        color: red.A400
     },
 }));
 
 const StyledBadge = withStyles((theme) => ({
     badge: {
-        backgroundColor: '#44b700',
-        color: '#44b700',
         boxShadow: `0 0 0 2px ${theme.palette.background.paper}`,
         '&::after': {
             position: 'absolute',
@@ -158,7 +157,7 @@ export default function AppBarNavigation({title}) {
                         <Avatar src={usersData.avatar}/>
                     </StyledBadge>
                 </IconButton>
-                <p>Profile</p>
+                <p>My Account</p>
             </MenuItem>
         </Menu>
     );

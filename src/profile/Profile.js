@@ -14,11 +14,13 @@ import Divider from "@material-ui/core/Divider";
 import TextField from "@material-ui/core/TextField";
 
 const useStyles = theme => ({
-    root: {
+    paper: {
         margin: '1.5rem',
         borderWidth: '.2rem',
         position: 'relative',
-        display: 'flex'
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
     },
     cardBackground: {
         backgroundColor: theme.palette.card.background
@@ -137,7 +139,7 @@ class Profile extends Component {
 
         const usersData = JSON.parse(localStorage.getItem('userData'));
 
-        return (<div className={classes.root}>
+        return (<div className={classes.paper}>
             <Grid
                 container
                 spacing={4}>

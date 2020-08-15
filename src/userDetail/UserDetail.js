@@ -15,11 +15,13 @@ import TextField from "@material-ui/core/TextField";
 import {userDetailActions} from "../_actions/userDetail.actions";
 
 const useStyles = theme => ({
-    root: {
+    paper: {
         margin: '1.5rem',
         borderWidth: '.2rem',
         position: 'relative',
-        display: 'flex'
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
     },
     cardBackground: {
         backgroundColor: theme.palette.card.background
@@ -143,7 +145,7 @@ class UserDetail extends Component {
         const {classes} = this.props;
         const {userDetailData} = this.props;
 
-        return (<div className={classes.root}>
+        return (<div className={classes.paper}>
             <Grid
                 container
                 spacing={4}>

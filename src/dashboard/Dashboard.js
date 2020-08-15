@@ -7,10 +7,13 @@ import Typography from "@material-ui/core/Typography";
 import Card from "@material-ui/core/Card/Card";
 
 const useStyles = theme => ({
-    root: {
+    paper: {
         margin: '1.5rem',
         borderWidth: '.2rem',
-        position: 'relative'
+        position: 'relative',
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'left',
     },
     content: {
         padding: '2rem 2rem !important',
@@ -77,7 +80,7 @@ class Dashboard extends Component {
         const usersData = JSON.parse(localStorage.getItem('userData'));
 
         return (<div>
-                <Card className={classes.root}>
+                <Card className={classes.paper}>
                     <CardContent className={classes.content}>
                         <Typography className={classes.title} gutterBottom>
                             {usersData &&

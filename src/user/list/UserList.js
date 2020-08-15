@@ -19,10 +19,13 @@ import {routeConstants} from "../../_constants";
 import IconButton from "@material-ui/core/IconButton";
 
 const useStyles = theme => ({
-    root: {
+    paper: {
         margin: '1.5rem',
         borderWidth: '.2rem',
-        position: 'relative'
+        position: 'relative',
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
     },
     customBadgeSuccess: {
         backgroundColor: green.A400,
@@ -91,7 +94,7 @@ class UserList extends Component {
         const page = (userListData && userListData.content.length > 0) && userListData.number;
 
         return (
-            <div className={classes.root}>
+            <div className={classes.paper}>
                 <TableContainer component={Paper}>
                     <Table className={classes.table} aria-label="simple table">
                         <TableHead>

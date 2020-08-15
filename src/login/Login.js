@@ -19,7 +19,9 @@ import {routeConstants} from "../_constants";
 
 const useStyles = theme => ({
     paper: {
-        marginTop: theme.spacing(8),
+        margin: '1.5rem',
+        borderWidth: '.2rem',
+        position: 'relative',
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',

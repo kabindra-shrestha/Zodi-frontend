@@ -1,13 +1,17 @@
 import React, {Component} from 'react';
-import {Button, CircularProgress, TextField, withStyles} from '@material-ui/core';
+import {Button, CircularProgress, Container, CssBaseline, TextField, withStyles} from '@material-ui/core';
 import {questionCreateActions} from "../../_actions";
 import {connect} from "react-redux";
 import {withRouter} from "react-router-dom";
 
 const useStyles = theme => ({
-    root: {
-        flexGrow: 1,
+    paper: {
+        margin: '1.5rem',
+        borderWidth: '.2rem',
+        position: 'relative',
         display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'left',
     },
     form: {
         width: '100%', // Fix IE 11 issue.
@@ -60,34 +64,37 @@ class QuestionCreate extends Component {
         const {question, submitted} = this.state;
 
         return (
-            <div className={classes.root}>
-                <form className={classes.form} noValidate onSubmit={this.handleSubmit}>
-                    <TextField
-                        margin="normal"
-                        required
-                        fullWidth
-                        id="question"
-                        name="question"
-                        label="Question"
-                        type="text"
-                        value={question}
-                        autoFocus
-                        onChange={this.handleChange}
-                        error={submitted && !question}
-                        helperText={submitted && !question && "Question is required"}/>
-                    <Button
-                        variant="contained"
-                        fullWidth
-                        type="submit"
-                        color="primary"
-                        className={classes.submit}>
-                        Submit
-                    </Button>
-                    {fetching &&
-                    <CircularProgress className={classes.spinner}/>
-                    }
-                </form>
-            </div>
+            <Container component="main" maxWidth="xs">
+                <CssBaseline/>
+                <div className={classes.paper}>
+                    <form className={classes.form} noValidate onSubmit={this.handleSubmit}>
+                        <TextField
+                            margin="normal"
+                            required
+                            fullWidth
+                            id="question"
+                            name="question"
+                            label="Question"
+                            type="text"
+                            value={question}
+                            autoFocus
+                            onChange={this.handleChange}
+                            error={submitted && !question}
+                            helperText={submitted && !question && "Question is required"}/>
+                        <Button
+                            variant="contained"
+                            fullWidth
+                            type="submit"
+                            color="primary"
+                            className={classes.submit}>
+                            Submit
+                        </Button>
+                        {fetching &&
+                        <CircularProgress className={classes.spinner}/>
+                        }
+                    </form>
+                </div>
+            </Container>
         );
     }
 }

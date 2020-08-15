@@ -5,10 +5,13 @@ import Typography from "@material-ui/core/Typography";
 import makeStyles from "@material-ui/core/styles/makeStyles";
 
 const useStyles = makeStyles((theme) => ({
-    root: {
+    paper: {
         margin: '1.5rem',
         borderWidth: '.2rem',
-        position: 'relative'
+        position: 'relative',
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'left',
     },
     content: {
         padding: '2rem 2rem !important',
@@ -71,7 +74,7 @@ export default function Welcome(props) {
     const classes = useStyles();
 
     return (
-        <Card className={classes.root}>
+        <Card className={classes.paper}>
             <CardContent className={classes.content}>
                 <Typography className={classes.title} gutterBottom>
                     {props.heading}

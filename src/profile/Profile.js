@@ -511,6 +511,7 @@ class Profile extends Component {
             </Grid>
         </div>);
     }
+
 }
 
 function mapStateToProps(state) {

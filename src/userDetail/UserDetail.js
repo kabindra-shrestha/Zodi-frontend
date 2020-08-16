@@ -512,6 +512,7 @@ class UserDetail extends Component {
             </Grid>
         </div>);
     }
+
 }
 
 function mapStateToProps(state) {

@@ -98,6 +98,7 @@ class Dashboard extends Component {
             </div>
         );
     }
+
 }
 
 function mapStateToProps(state) {

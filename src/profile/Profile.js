@@ -195,100 +195,11 @@ class Profile extends Component {
                                     xs={12}>
                                     <TextField
                                         fullWidth
-                                        label="First name"
-                                        margin="dense"
-                                        name="firstName"
-                                        required
-                                        value={usersData.firstName}
-                                        variant="outlined"
-                                        disabled
-                                    />
-                                </Grid>
-                                <Grid
-                                    item
-                                    md={6}
-                                    xs={12}>
-                                    <TextField
-                                        fullWidth
-                                        label="Last name"
-                                        margin="dense"
-                                        name="lastName"
-                                        required
-                                        value={usersData.lastName}
-                                        variant="outlined"
-                                        disabled
-                                    />
-                                </Grid>
-                                <Grid
-                                    item
-                                    md={6}
-                                    xs={12}>
-                                    <TextField
-                                        fullWidth
-                                        label="Name"
-                                        margin="dense"
-                                        name="name"
-                                        required
-                                        value={usersData.name}
-                                        variant="outlined"
-                                        disabled
-                                    />
-                                </Grid>
-                                <Grid
-                                    item
-                                    md={6}
-                                    xs={12}>
-                                    <TextField
-                                        fullWidth
-                                        label="Username"
-                                        margin="dense"
-                                        name="username"
-                                        required
-                                        value={usersData.username}
-                                        variant="outlined"
-                                        disabled
-                                    />
-                                </Grid>
-                                <Grid
-                                    item
-                                    md={6}
-                                    xs={12}>
-                                    <TextField
-                                        fullWidth
-                                        label="Email"
-                                        margin="dense"
-                                        name="email"
-                                        required
-                                        value={usersData.email}
-                                        variant="outlined"
-                                        disabled
-                                    />
-                                </Grid>
-                                <Grid
-                                    item
-                                    md={6}
-                                    xs={12}>
-                                    <TextField
-                                        fullWidth
                                         label="Age"
                                         margin="dense"
                                         name="age"
-                                        value={usersData.age}
-                                        variant="outlined"
-                                        disabled
-                                    />
-                                </Grid>
-                                <Grid
-                                    item
-                                    md={6}
-                                    xs={12}>
-                                    <TextField
-                                        fullWidth
-                                        label="Gender"
-                                        margin="dense"
-                                        name="gender"
                                         required
-                                        value={usersData.gender}
+                                        value={usersData.age}
                                         variant="outlined"
                                         disabled
                                     />
@@ -314,6 +225,21 @@ class Profile extends Component {
                                     xs={12}>
                                     <TextField
                                         fullWidth
+                                        label="City Id"
+                                        margin="dense"
+                                        name="cityId"
+                                        required
+                                        value={usersData.cityId}
+                                        variant="outlined"
+                                        disabled
+                                    />
+                                </Grid>
+                                <Grid
+                                    item
+                                    md={6}
+                                    xs={12}>
+                                    <TextField
+                                        fullWidth
                                         label="Current City"
                                         margin="dense"
                                         name="currentCity"
@@ -329,11 +255,11 @@ class Profile extends Component {
                                     xs={12}>
                                     <TextField
                                         fullWidth
-                                        label="School"
+                                        label="DOB"
                                         margin="dense"
-                                        name="school"
+                                        name="dob"
                                         required
-                                        value={usersData.school}
+                                        value={usersData.dob}
                                         variant="outlined"
                                         disabled
                                     />
@@ -344,101 +270,11 @@ class Profile extends Component {
                                     xs={12}>
                                     <TextField
                                         fullWidth
-                                        label="Has Liked You"
+                                        label="Email"
                                         margin="dense"
-                                        name="hasLikedYou"
+                                        name="email"
                                         required
-                                        value={usersData.hasLikedYou}
-                                        variant="outlined"
-                                        disabled
-                                    />
-                                </Grid>
-                                <Grid
-                                    item
-                                    md={6}
-                                    xs={12}>
-                                    <TextField
-                                        fullWidth
-                                        label="Kalon Points"
-                                        margin="dense"
-                                        name="kalonPoints"
-                                        required
-                                        value={usersData.kalonPoints}
-                                        variant="outlined"
-                                        disabled
-                                    />
-                                </Grid>
-                                <Grid
-                                    item
-                                    md={6}
-                                    xs={12}>
-                                    <TextField
-                                        fullWidth
-                                        label="Photos"
-                                        margin="dense"
-                                        name="photos"
-                                        required
-                                        value={usersData.photos}
-                                        variant="outlined"
-                                        disabled
-                                    />
-                                </Grid>
-                                <Grid
-                                    item
-                                    md={6}
-                                    xs={12}>
-                                    <TextField
-                                        fullWidth
-                                        label="Profile Pic"
-                                        margin="dense"
-                                        name="profilePic"
-                                        required
-                                        value={usersData.profilePic}
-                                        variant="outlined"
-                                        disabled
-                                    />
-                                </Grid>
-                                <Grid
-                                    item
-                                    md={6}
-                                    xs={12}>
-                                    <TextField
-                                        fullWidth
-                                        label="Status"
-                                        margin="dense"
-                                        name="status"
-                                        required
-                                        value={usersData.status}
-                                        variant="outlined"
-                                        disabled
-                                    />
-                                </Grid>
-                                <Grid
-                                    item
-                                    md={6}
-                                    xs={12}>
-                                    <TextField
-                                        fullWidth
-                                        label="Premium"
-                                        margin="dense"
-                                        name="premium"
-                                        required
-                                        value={usersData.premium}
-                                        variant="outlined"
-                                        disabled
-                                    />
-                                </Grid>
-                                <Grid
-                                    item
-                                    md={6}
-                                    xs={12}>
-                                    <TextField
-                                        fullWidth
-                                        label="User Verified"
-                                        margin="dense"
-                                        name="userVerified"
-                                        required
-                                        value={usersData.userVerified}
+                                        value={usersData.email}
                                         variant="outlined"
                                         disabled
                                     />
@@ -464,11 +300,146 @@ class Profile extends Component {
                                     xs={12}>
                                     <TextField
                                         fullWidth
-                                        label="Verification Deadline"
+                                        label="First Name"
                                         margin="dense"
-                                        name="verificationDeadline"
+                                        name="firstName"
                                         required
-                                        value={usersData.verificationDeadline}
+                                        value={usersData.firstName}
+                                        variant="outlined"
+                                        disabled
+                                    />
+                                </Grid>
+                                <Grid
+                                    item
+                                    md={6}
+                                    xs={12}>
+                                    <TextField
+                                        fullWidth
+                                        label="Gender"
+                                        margin="dense"
+                                        name="gender"
+                                        required
+                                        value={usersData.gender}
+                                        variant="outlined"
+                                        disabled
+                                    />
+                                </Grid>
+                                <Grid
+                                    item
+                                    md={6}
+                                    xs={12}>
+                                    <TextField
+                                        fullWidth
+                                        label="Has Liked You"
+                                        margin="dense"
+                                        name="hasLikedYou"
+                                        required
+                                        value={usersData.hasLikedYou}
+                                        variant="outlined"
+                                        disabled
+                                    />
+                                </Grid>
+                                <Grid
+                                    item
+                                    md={6}
+                                    xs={12}>
+                                    <TextField
+                                        fullWidth
+                                        label="Interests"
+                                        margin="dense"
+                                        name="interests"
+                                        required
+                                        value={usersData.interests}
+                                        variant="outlined"
+                                        disabled
+                                    />
+                                </Grid>
+                                <Grid
+                                    item
+                                    md={6}
+                                    xs={12}>
+                                    <TextField
+                                        fullWidth
+                                        label="Last Name"
+                                        margin="dense"
+                                        name="lastName"
+                                        required
+                                        value={usersData.lastName}
+                                        variant="outlined"
+                                        disabled
+                                    />
+                                </Grid>
+                                <Grid
+                                    item
+                                    md={6}
+                                    xs={12}>
+                                    <TextField
+                                        fullWidth
+                                        label="Looking For"
+                                        margin="dense"
+                                        name="lookingFor"
+                                        required
+                                        value={usersData.lookingFor}
+                                        variant="outlined"
+                                        disabled
+                                    />
+                                </Grid>
+                                <Grid
+                                    item
+                                    md={6}
+                                    xs={12}>
+                                    <TextField
+                                        fullWidth
+                                        label="Name"
+                                        margin="dense"
+                                        name="name"
+                                        required
+                                        value={usersData.name}
+                                        variant="outlined"
+                                        disabled
+                                    />
+                                </Grid>
+                                <Grid
+                                    item
+                                    md={6}
+                                    xs={12}>
+                                    <TextField
+                                        fullWidth
+                                        label="Photos"
+                                        margin="dense"
+                                        name="photos"
+                                        required
+                                        value={usersData.photos}
+                                        variant="outlined"
+                                        disabled
+                                    />
+                                </Grid>
+                                <Grid
+                                    item
+                                    md={6}
+                                    xs={12}>
+                                    <TextField
+                                        fullWidth
+                                        label="Premium"
+                                        margin="dense"
+                                        name="premium"
+                                        required
+                                        value={usersData.premium}
+                                        variant="outlined"
+                                        disabled
+                                    />
+                                </Grid>
+                                <Grid
+                                    item
+                                    md={6}
+                                    xs={12}>
+                                    <TextField
+                                        fullWidth
+                                        label="Profile Pic"
+                                        margin="dense"
+                                        name="profilePic"
+                                        required
+                                        value={usersData.profilePic}
                                         variant="outlined"
                                         disabled
                                     />
@@ -494,11 +465,86 @@ class Profile extends Component {
                                     xs={12}>
                                     <TextField
                                         fullWidth
-                                        label="City Id"
+                                        label="School"
                                         margin="dense"
-                                        name="cityId"
+                                        name="school"
                                         required
-                                        value={usersData.cityId}
+                                        value={usersData.school}
+                                        variant="outlined"
+                                        disabled
+                                    />
+                                </Grid>
+                                <Grid
+                                    item
+                                    md={6}
+                                    xs={12}>
+                                    <TextField
+                                        fullWidth
+                                        label="Status"
+                                        margin="dense"
+                                        name="status"
+                                        required
+                                        value={usersData.status}
+                                        variant="outlined"
+                                        disabled
+                                    />
+                                </Grid>
+                                <Grid
+                                    item
+                                    md={6}
+                                    xs={12}>
+                                    <TextField
+                                        fullWidth
+                                        label="User Verified"
+                                        margin="dense"
+                                        name="userVerified"
+                                        required
+                                        value={usersData.userVerified}
+                                        variant="outlined"
+                                        disabled
+                                    />
+                                </Grid>
+                                <Grid
+                                    item
+                                    md={6}
+                                    xs={12}>
+                                    <TextField
+                                        fullWidth
+                                        label="Username"
+                                        margin="dense"
+                                        name="username"
+                                        required
+                                        value={usersData.username}
+                                        variant="outlined"
+                                        disabled
+                                    />
+                                </Grid>
+                                <Grid
+                                    item
+                                    md={6}
+                                    xs={12}>
+                                    <TextField
+                                        fullWidth
+                                        label="Verification Deadline"
+                                        margin="dense"
+                                        name="verificationDeadline"
+                                        required
+                                        value={usersData.verificationDeadline}
+                                        variant="outlined"
+                                        disabled
+                                    />
+                                </Grid>
+                                <Grid
+                                    item
+                                    md={6}
+                                    xs={12}>
+                                    <TextField
+                                        fullWidth
+                                        label="Verification Id"
+                                        margin="dense"
+                                        name="verificationId"
+                                        required
+                                        value={usersData.verificationId}
                                         variant="outlined"
                                         disabled
                                     />

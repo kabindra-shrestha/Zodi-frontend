@@ -173,11 +173,11 @@ class UserDetail extends Component {
                                     <Avatar className={classes.avatar} src={userDetailData.avatar}/>
                                 </StyledBadge>
                             </div>
-                            <Typography className={classes.name} variant="h3" gutterBottom>
+                            <Typography className={classes.name} variant="h5" gutterBottom>
                                 {userDetailData.firstName + " " + userDetailData.lastName}
                             </Typography>
                             <Typography className={classes.info} variant="body1" gutterBottom>
-                                {userDetailData.address + " " + userDetailData.lastName}
+                                {userDetailData.email}
                             </Typography>
                         </CardContent>
                         }

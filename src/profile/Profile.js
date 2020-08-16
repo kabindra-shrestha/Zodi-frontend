@@ -164,11 +164,11 @@ class Profile extends Component {
                                     <Avatar className={classes.avatar} src={usersData.avatar}/>
                                 </StyledBadge>
                             </div>
-                            <Typography className={classes.name} variant="h3" gutterBottom>
+                            <Typography className={classes.name} variant="h5" gutterBottom>
                                 {usersData.firstName + " " + usersData.lastName}
                             </Typography>
                             <Typography className={classes.info} variant="body1" gutterBottom>
-                                {usersData.address + " " + usersData.lastName}
+                                {usersData.email}
                             </Typography>
                         </CardContent>
                         }

@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {withStyles} from "@material-ui/core";
+import {CircularProgress, withStyles} from "@material-ui/core";
 import {withRouter} from "react-router-dom";
 import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
@@ -143,9 +143,12 @@ class UserDetail extends Component {
 
     render() {
         const {classes} = this.props;
-        const {userDetailData} = this.props;
+        const {userDetailData, fetching} = this.props;
 
         return (<div className={classes.paper}>
+            {fetching &&
+            <CircularProgress className={classes.spinner}/>
+            }
             <Grid
                 container
                 spacing={4}>
@@ -568,10 +571,11 @@ class UserDetail extends Component {
 
 function mapStateToProps(state) {
     const {userDetail} = state;
-    const {userDetailData} = userDetail;
+    const {userDetailData, fetching} = userDetail;
     return {
         userDetail,
-        userDetailData
+        userDetailData,
+        fetching
     };
 }
 

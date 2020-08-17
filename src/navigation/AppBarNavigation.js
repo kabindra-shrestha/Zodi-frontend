@@ -43,15 +43,15 @@ const useStyles = makeStyles((theme) => ({
             display: 'none',
         },
     },
-    customUserVerified: {
+    customBadgeUserVerified: {
         backgroundColor: green.A400,
         color: green.A400
     },
-    customUserVerificationPending: {
+    customBadgeUserVerificationPending: {
         backgroundColor: yellow.A400,
         color: yellow.A400
     },
-    customUserNotVerified: {
+    customBadgeUserNotVerified: {
         backgroundColor: red.A400,
         color: red.A400
     },
@@ -88,13 +88,13 @@ const StyledBadge = withStyles((theme) => ({
 function userVerificationStatus(userVerified, classes) {
     switch (userVerified) {
         case 1:
-            return classes.customUserVerified;
+            return classes.customBadgeUserVerified;
         case 2:
-            return classes.customUserVerificationPending;
+            return classes.customBadgeUserVerificationPending;
         case 0:
-            return classes.customUserNotVerified;
+            return classes.customBadgeUserNotVerified;
         default:
-            return classes.customUserNotVerified;
+            return classes.customBadgeUserNotVerified;
     }
 }
 

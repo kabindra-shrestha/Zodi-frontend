@@ -196,6 +196,9 @@ class UserDetail extends Component {
                             <Typography className={classes.info} variant="body1" gutterBottom>
                                 {userDetailData.email}
                             </Typography>
+                            <Typography className={classes.info} variant="body1" gutterBottom>
+                                {userDetailData.status}
+                            </Typography>
                         </CardContent>
                         }
                     </Card>

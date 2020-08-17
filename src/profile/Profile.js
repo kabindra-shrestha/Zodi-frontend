@@ -187,6 +187,9 @@ class Profile extends Component {
                             <Typography className={classes.info} variant="body1" gutterBottom>
                                 {usersData.email}
                             </Typography>
+                            <Typography className={classes.info} variant="body1" gutterBottom>
+                                {usersData.status}
+                            </Typography>
                         </CardContent>
                         }
                     </Card>

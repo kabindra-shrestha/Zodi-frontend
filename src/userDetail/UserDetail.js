@@ -8,7 +8,7 @@ import Card from "@material-ui/core/Card/Card";
 import Grid from "@material-ui/core/Grid";
 import Avatar from "@material-ui/core/Avatar";
 import Badge from "@material-ui/core/Badge";
-import {green, red} from "@material-ui/core/colors";
+import {green, red, yellow} from "@material-ui/core/colors";
 import CardHeader from "@material-ui/core/CardHeader";
 import Divider from "@material-ui/core/Divider";
 import TextField from "@material-ui/core/TextField";
@@ -87,11 +87,15 @@ const useStyles = theme => ({
         flexShrink: 0,
         flexGrow: 0
     },
-    customBadgeSuccess: {
+    customUserVerified: {
         backgroundColor: green.A400,
         color: green.A400
     },
-    customBadgeError: {
+    customUserVerificationPending: {
+        backgroundColor: yellow.A400,
+        color: yellow.A400
+    },
+    customUserNotVerified: {
         backgroundColor: red.A400,
         color: red.A400
     },
@@ -141,6 +145,19 @@ class UserDetail extends Component {
         props.dispatch(userDetailActions.userDetail(props.match.params.username));
     }
 
+    userVerificationStatus(userVerified, classes) {
+        switch (userVerified) {
+            case 1:
+                return classes.customUserVerified;
+            case 2:
+                return classes.customUserVerificationPending;
+            case 0:
+                return classes.customUserNotVerified;
+            default:
+                return classes.customUserNotVerified;
+        }
+    }
+
     render() {
         const {classes} = this.props;
         const {userDetailData, fetching} = this.props;
@@ -169,7 +186,7 @@ class UserDetail extends Component {
                                         horizontal: 'right',
                                     }}
                                     variant="dot"
-                                    classes={{badge: userDetailData.status ? classes.customBadgeSuccess : classes.customBadgeError}}>
+                                    classes={{badge: this.userVerificationStatus(userDetailData.userVerified, classes)}}>
                                     <Avatar className={classes.avatar} src={userDetailData.avatar}/>
                                 </StyledBadge>
                             </div>

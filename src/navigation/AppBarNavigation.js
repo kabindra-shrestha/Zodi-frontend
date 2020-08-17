@@ -9,7 +9,7 @@ import Menu from '@material-ui/core/Menu';
 import MoreIcon from '@material-ui/icons/MoreVert';
 import {routeConstants} from "../_constants";
 import {makeStyles, withStyles} from "@material-ui/core/styles";
-import {green, red} from "@material-ui/core/colors";
+import {green, red, yellow} from "@material-ui/core/colors";
 import Badge from "@material-ui/core/Badge";
 import Avatar from "@material-ui/core/Avatar";
 
@@ -43,11 +43,15 @@ const useStyles = makeStyles((theme) => ({
             display: 'none',
         },
     },
-    customBadgeSuccess: {
+    customUserVerified: {
         backgroundColor: green.A400,
         color: green.A400
     },
-    customBadgeError: {
+    customUserVerificationPending: {
+        backgroundColor: yellow.A400,
+        color: yellow.A400
+    },
+    customUserNotVerified: {
         backgroundColor: red.A400,
         color: red.A400
     },
@@ -80,6 +84,19 @@ const StyledBadge = withStyles((theme) => ({
         },
     },
 }))(Badge);
+
+function userVerificationStatus(userVerified, classes) {
+    switch (userVerified) {
+        case 1:
+            return classes.customUserVerified;
+        case 2:
+            return classes.customUserVerificationPending;
+        case 0:
+            return classes.customUserNotVerified;
+        default:
+            return classes.customUserNotVerified;
+    }
+}
 
 export default function AppBarNavigation({title}) {
     const classes = useStyles();
@@ -153,7 +170,7 @@ export default function AppBarNavigation({title}) {
                             horizontal: 'right',
                         }}
                         variant="dot"
-                        classes={{badge: usersData.status ? classes.customBadgeSuccess : classes.customBadgeError}}>
+                        classes={{badge: userVerificationStatus(usersData.userVerified, classes)}}>
                         <Avatar src={usersData.avatar}/>
                     </StyledBadge>
                 </IconButton>
@@ -189,7 +206,7 @@ export default function AppBarNavigation({title}) {
                                     horizontal: 'right',
                                 }}
                                 variant="dot"
-                                classes={{badge: usersData.status ? classes.customBadgeSuccess : classes.customBadgeError}}>
+                                classes={{badge: userVerificationStatus(usersData.userVerified, classes)}}>
                                 <Avatar src={usersData.avatar}/>
                             </StyledBadge>
                         </IconButton>

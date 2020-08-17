@@ -12,7 +12,7 @@ import TableCell from "@material-ui/core/TableCell";
 import TableBody from "@material-ui/core/TableBody";
 import Avatar from "@material-ui/core/Avatar";
 import Badge from "@material-ui/core/Badge";
-import {green, red} from "@material-ui/core/colors";
+import {green, red, yellow} from "@material-ui/core/colors";
 import TableFooter from "@material-ui/core/TableFooter";
 import TablePagination from "@material-ui/core/TablePagination";
 import {routeConstants} from "../../_constants";
@@ -27,11 +27,15 @@ const useStyles = theme => ({
         flexDirection: 'column',
         alignItems: 'center',
     },
-    customBadgeSuccess: {
+    customUserVerified: {
         backgroundColor: green.A400,
         color: green.A400
     },
-    customBadgeError: {
+    customUserVerificationPending: {
+        backgroundColor: yellow.A400,
+        color: yellow.A400
+    },
+    customUserNotVerified: {
         backgroundColor: red.A400,
         color: red.A400
     },
@@ -84,6 +88,19 @@ class UserList extends Component {
         this.props.dispatch(userListActions.userList(newPage));
     };
 
+    userVerificationStatus(userVerified, classes) {
+        switch (userVerified) {
+            case 1:
+                return classes.customUserVerified;
+            case 2:
+                return classes.customUserVerificationPending;
+            case 0:
+                return classes.customUserNotVerified;
+            default:
+                return classes.customUserNotVerified;
+        }
+    }
+
     render() {
         const {classes} = this.props;
         const {userList, userListData} = this.props;
@@ -127,7 +144,7 @@ class UserList extends Component {
                                                         horizontal: 'right',
                                                     }}
                                                     variant="dot"
-                                                    classes={{badge: userListContent.status ? classes.customBadgeSuccess : classes.customBadgeError}}>
+                                                    classes={{badge: this.userVerificationStatus(userListContent.userVerified, classes)}}>
                                                     <Avatar src={userListContent.avatar}/>
                                                 </StyledBadge>
                                             </IconButton>

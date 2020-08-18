@@ -577,7 +577,7 @@ class UserDetail extends Component {
                                         variant="outlined"
                                         disabled
                                     />*/}
-                                    <img className={classes.img} alt="complex" src={userDetailData.verificationId} />
+                                    <img alt="complex" src={userDetailData.verificationId} />
                                 </Grid>
                             </Grid>
                         </CardContent>

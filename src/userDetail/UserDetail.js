@@ -567,7 +567,7 @@ class UserDetail extends Component {
                                     item
                                     md={6}
                                     xs={12}>
-                                    <TextField
+                                    {/*<TextField
                                         fullWidth
                                         label="Verification Id"
                                         margin="dense"
@@ -576,7 +576,8 @@ class UserDetail extends Component {
                                         value={userDetailData.verificationId}
                                         variant="outlined"
                                         disabled
-                                    />
+                                    />*/}
+                                    <img className={classes.img} alt="complex" src={userDetailData.verificationId} />
                                 </Grid>
                             </Grid>
                         </CardContent>

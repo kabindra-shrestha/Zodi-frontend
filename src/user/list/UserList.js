@@ -129,6 +129,12 @@ class UserList extends Component {
                             </TableRow>
                         </TableHead>
                         <TableBody>
+                            {userList.fetching &&
+                            <TableRow>
+                                <TableCell colSpan={column} align="center">
+                                    <CircularProgress className={classes.spinner}/>
+                                </TableCell>
+                            </TableRow>}
                             {userListData && userListData.content.length > 0 ? userListData.content.map((userListContent) =>
                                     <TableRow key={userListContent.username}>
                                         <TableCell component="th" scope="row" align="center">
@@ -179,17 +185,12 @@ class UserList extends Component {
                                         </TableCell>
                                     </TableRow>
                                 ) :
-                                userList.fetching ?
-                                    <TableRow>
-                                        <TableCell colSpan={column} align="center">
-                                            <CircularProgress className={classes.spinner}/>
-                                        </TableCell>
-                                    </TableRow> :
-                                    <TableRow>
-                                        <TableCell colSpan={column} align="center">
-                                            No Users Available
-                                        </TableCell>
-                                    </TableRow>
+                                !userList.fetching &&
+                                <TableRow>
+                                    <TableCell colSpan={column} align="center">
+                                        No Users Available
+                                    </TableCell>
+                                </TableRow>
                             }
                         </TableBody>
                         {(userListData && userListData.content.length > 0) &&

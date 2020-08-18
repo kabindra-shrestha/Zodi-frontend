@@ -105,7 +105,7 @@ class UserList extends Component {
         const {classes} = this.props;
         const {userList, userListData} = this.props;
 
-        const column = 9;
+        const column = 10;
         const count = (userListData && userListData.content.length > 0) && userListData.totalElements;
         const rowsPerPage = (userListData && userListData.content.length > 0) && userListData.size;
         const page = (userListData && userListData.content.length > 0) && userListData.number;
@@ -124,6 +124,7 @@ class UserList extends Component {
                                 <TableCell align="center">Email</TableCell>
                                 <TableCell align="center">Age</TableCell>
                                 <TableCell align="center">Gender</TableCell>
+                                <TableCell align="center">Looking For</TableCell>
                                 <TableCell align="center">Current City</TableCell>
                             </TableRow>
                         </TableHead>
@@ -169,6 +170,9 @@ class UserList extends Component {
                                         </TableCell>
                                         <TableCell component="th" scope="row" align="center">
                                             {userListContent.gender}
+                                        </TableCell>
+                                        <TableCell component="th" scope="row" align="center">
+                                            {userListContent.lookingFor}
                                         </TableCell>
                                         <TableCell component="th" scope="row" align="center">
                                             {userListContent.currentCity}

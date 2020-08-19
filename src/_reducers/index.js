@@ -5,6 +5,7 @@ import {login} from './login.reducer';
 import {users} from "./users.reducer";
 import {userList} from "./userList.reducer";
 import {userDetail} from "./userDetail.reducer";
+import {userVerificationIdDelete} from "./userVerificationIdDelete.reducer";
 import {questionCreate} from "./questionCreate.reducer";
 
 const rootReducer = combineReducers({
@@ -13,6 +14,7 @@ const rootReducer = combineReducers({
     users,
     userList,
     userDetail,
+    userVerificationIdDelete,
     questionCreate
 });
 

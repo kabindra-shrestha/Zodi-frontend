@@ -1,7 +1,7 @@
 import {userVerificationIdDeleteConstants} from '../_constants';
 
 const initialState = {
-    fetching: false,
+    deleting: false,
     userVerificationIdDeleteStatus: false,
     userVerificationIdDeleteMessage: ''
 };
@@ -10,7 +10,7 @@ export function userVerificationIdDelete(state = initialState, action) {
     switch (action.type) {
         case userVerificationIdDeleteConstants.USER_VERIFICATION_ID_DELETE_REQUEST:
             return {
-                fetching: true,
+                deleting: true,
             };
         case userVerificationIdDeleteConstants.USER_VERIFICATION_ID_DELETE_SUCCESS:
             return {

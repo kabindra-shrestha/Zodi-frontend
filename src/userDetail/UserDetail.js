@@ -17,6 +17,7 @@ import IconButton from "@material-ui/core/IconButton";
 import DeleteIcon from '@material-ui/icons/Delete';
 import CardMedia from "@material-ui/core/CardMedia";
 import CardActions from "@material-ui/core/CardActions";
+import {userVerificationIdDeleteActions} from "../_actions";
 
 const useStyles = theme => ({
     paper: {
@@ -143,6 +144,11 @@ const useStyles = theme => ({
         textAlign: 'center',
         marginTop: '8px',
     },
+    spinner: {
+        display: 'block',
+        marginLeft: 'auto',
+        marginRight: 'auto'
+    },
 });
 
 const StyledBadge = withStyles((theme) => ({
@@ -194,9 +200,13 @@ class UserDetail extends Component {
         }
     }
 
+    handleUserVerificationIdDelete(username) {
+        this.props.dispatch(userVerificationIdDeleteActions.userVerificationIdDelete(username));
+    }
+
     render() {
         const {classes} = this.props;
-        const {userDetailData, fetching} = this.props;
+        const {userDetailData, fetching, deleting} = this.props;
 
         return (<div className={classes.paper}>
             {fetching &&
@@ -631,20 +641,31 @@ class UserDetail extends Component {
                                         item
                                         md={6}
                                         xs={12}>
-                                        <Card className={classes.cardBox}>
-                                            <CardHeader title="Verification ID" className={classes.cardHeader}/>
-                                            <CardMedia image={userDetailData.verificationId}
-                                                       className={classes.cardMedia}/>
-                                            <CardActions className={classes.cardAction} disableSpacing>
-                                                <IconButton
-                                                    edge="end"
-                                                    aria-label="user verification id"
-                                                    aria-haspopup="true"
-                                                    color="inherit">
-                                                    <DeleteIcon/>
-                                                </IconButton>
-                                            </CardActions>
-                                        </Card>
+                                        {userDetailData.verificationId ?
+                                            <Card className={classes.cardBox}>
+                                                <CardHeader title="Verification ID" className={classes.cardHeader}/>
+                                                <CardMedia image={userDetailData.verificationId}
+                                                           className={classes.cardMedia}/>
+                                                <CardActions className={classes.cardAction} disableSpacing>
+                                                    <IconButton
+                                                        edge="end"
+                                                        aria-label="user verification id"
+                                                        aria-haspopup="true"
+                                                        color="inherit"
+                                                        onClick={() => this.handleUserVerificationIdDelete(userDetailData.username)}>
+                                                        <DeleteIcon/>
+                                                    </IconButton>
+                                                </CardActions>
+                                                {deleting &&
+                                                <CircularProgress className={classes.spinner}/>
+                                                }
+                                            </Card>
+                                            :
+                                            <Card className={classes.cardBox}>
+                                                <CardHeader title="No Verification Found"
+                                                            className={classes.cardHeader}/>
+                                            </Card>
+                                        }
                                     </Grid>
                                 </Grid>
                             </CardContent>
@@ -659,12 +680,14 @@ class UserDetail extends Component {
 }
 
 function mapStateToProps(state) {
-    const {userDetail} = state;
+    const {userDetail, userVerificationIdDelete} = state;
     const {userDetailData, fetching} = userDetail;
+    const {deleting} = userVerificationIdDelete;
     return {
         userDetail,
         userDetailData,
-        fetching
+        fetching,
+        deleting
     };
 }
 

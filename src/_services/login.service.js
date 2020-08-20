@@ -50,7 +50,7 @@ function handleResponse(response) {
                 window.location.reload(true);
             }
 
-            const error = data && data.error_description;
+            const error = data && (data.error_description || data.message);
             return Promise.reject(error);
         }
 

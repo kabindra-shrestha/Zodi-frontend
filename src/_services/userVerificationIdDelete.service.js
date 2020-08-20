@@ -8,16 +8,12 @@ export const userVerificationIdDeleteService = {
 };
 
 function userVerificationIdDelete(username) {
-    const form = new FormData();
-    form.append("username", username);
-
     const requestOptions = {
-        method: 'DELETE',
+        method: 'GET',
         headers: authHeader(),
-        body: form
     };
 
-    return fetch(process.env.REACT_APP_API_ENDPOINT + process.env.REACT_APP_API_VERSION_V1 + apisConstants.USER_VERIFICATION_ID_DELETE_URL, requestOptions)
+    return fetch(process.env.REACT_APP_API_ENDPOINT + process.env.REACT_APP_API_VERSION_V1 + apisConstants.USER_VERIFICATION_ID_DELETE_URL + '?username=' + username, requestOptions)
         .then(handleResponse)
         .then(userVerificationIdDelete => {
             return userVerificationIdDelete;
@@ -40,7 +36,7 @@ function handleResponse(response) {
                 window.location.reload(true);
             }
 
-            const error = data && data.error_description;
+            const error = data && (data.error_description || data.message);
             return Promise.reject(error);
         }
 

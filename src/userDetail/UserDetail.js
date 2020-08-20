@@ -106,6 +106,9 @@ const useStyles = theme => ({
         color: theme.palette.text,
         textAlign: 'center'
     },
+    cardBox: {
+        boxShadow: '0rem 0rem !important'
+    },
     cardHeader: {
         textAlign: 'center'
     },
@@ -618,7 +621,7 @@ class UserDetail extends Component {
                         </Card>
                         <Card
                             className={classes.cardBackground}>
-                            <CardHeader title="Verification Detail"/>
+                            <CardHeader title="Verification"/>
                             <Divider/>
                             <CardContent className={classes.content}>
                                 <Grid
@@ -628,7 +631,7 @@ class UserDetail extends Component {
                                         item
                                         md={6}
                                         xs={12}>
-                                        <Card>
+                                        <Card className={classes.cardBox}>
                                             <CardHeader title="Verification ID" className={classes.cardHeader}/>
                                             <CardMedia image={userDetailData.verificationId}
                                                        className={classes.cardMedia}/>

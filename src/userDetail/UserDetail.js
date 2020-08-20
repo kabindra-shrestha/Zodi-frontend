@@ -614,17 +614,16 @@ class UserDetail extends Component {
                                         item
                                         md={6}
                                         xs={12}>
-                                        {/*<TextField
-                                        fullWidth
-                                        label="Verification Id"
-                                        margin="dense"
-                                        name="verificationId"
-                                        required
-                                        value={userDetailData.verificationId}
-                                        variant="outlined"
-                                        disabled
-                                    />*/}
-                                        <img alt="complex" src={userDetailData.verificationId}/>
+                                        <TextField
+                                            fullWidth
+                                            label="Verification Id"
+                                            margin="dense"
+                                            name="verificationId"
+                                            required
+                                            value={userDetailData.verificationId}
+                                            variant="outlined"
+                                            disabled
+                                        />
                                     </Grid>
                                 </Grid>
                             </CardContent>

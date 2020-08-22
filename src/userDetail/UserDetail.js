@@ -111,7 +111,7 @@ const useStyles = theme => ({
         boxShadow: '0rem 0rem !important'
     },
     cardHeader: {
-        textAlign: 'center'
+        textAlign: 'left'
     },
     cardMedia: {
         width: 200,

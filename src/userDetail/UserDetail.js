@@ -88,8 +88,8 @@ const useStyles = theme => ({
     },
     avatar: {
         margin: 'auto',
-        height: 100,
-        width: 100,
+        height: 120,
+        width: 120,
         flexShrink: 0,
         flexGrow: 0
     },

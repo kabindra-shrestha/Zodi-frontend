@@ -8,7 +8,7 @@ import {Dashboard} from "../dashboard/Dashboard";
 import {UserList} from "../user/list/UserList";
 import {QuestionCreate} from "../question/create/QuestionCreate";
 import {Profile} from "../profile/Profile";
-import {UserDetail} from "../userDetail/UserDetail";
+import {UserDetail} from "../user/detail/UserDetail";
 import {PrivateRoute} from "../_components";
 import Welcome from "../main/Welcome";
 import ErrorPageNotFound from "../error/ErrorPageNotFound";

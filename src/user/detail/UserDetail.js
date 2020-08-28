@@ -12,12 +12,12 @@ import {green, red, yellow} from "@material-ui/core/colors";
 import CardHeader from "@material-ui/core/CardHeader";
 import Divider from "@material-ui/core/Divider";
 import TextField from "@material-ui/core/TextField";
-import {userDetailActions} from "../_actions/userDetail.actions";
+import {userDetailActions} from "../../_actions/userDetail.actions";
 import IconButton from "@material-ui/core/IconButton";
 import DeleteIcon from '@material-ui/icons/Delete';
 import CardMedia from "@material-ui/core/CardMedia";
 import CardActions from "@material-ui/core/CardActions";
-import {userVerificationIdDeleteActions} from "../_actions";
+import {userVerificationIdDeleteActions} from "../../_actions";
 
 const useStyles = theme => ({
     paper: {
